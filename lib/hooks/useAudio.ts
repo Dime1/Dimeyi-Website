@@ -12,10 +12,19 @@ export function useAudio({ src, loop = true }: UseAudioOptions) {
   const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
-    audioRef.current      = new Audio(src)
-    audioRef.current.loop = loop
+    const audio   = new Audio(src)
+    audio.loop    = loop
+    audioRef.current = audio
+
+    const onPlay  = () => setPlaying(true)
+    const onPause = () => setPlaying(false)
+    audio.addEventListener('play',  onPlay)
+    audio.addEventListener('pause', onPause)
+
     return () => {
-      audioRef.current?.pause()
+      audio.removeEventListener('play',  onPlay)
+      audio.removeEventListener('pause', onPause)
+      audio.pause()
       audioRef.current = null
     }
   }, [src, loop])
@@ -24,12 +33,10 @@ export function useAudio({ src, loop = true }: UseAudioOptions) {
     if (!audioRef.current) return
     if (playing) {
       audioRef.current.pause()
-      setPlaying(false)
     } else {
       audioRef.current.play().catch(() => {
-        // Browser autoplay policy — user must interact first; silent fail is correct
+        // Browser autoplay policy — silently ignored; state stays false via event listeners
       })
-      setPlaying(true)
     }
   }
 
