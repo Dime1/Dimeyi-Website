@@ -1,0 +1,32 @@
+/* Design tokens as CSS custom properties — used throughout the codebase */
+:root {
+  /* ── Base ── */
+  --color-ivory:   #FBF6F0;
+  --color-blush:   #F7E8E4;
+  --color-plum:    #231622;
+
+  /* ── Yoruba Royal ── */
+  --color-indigo:  #2C2A4A;
+  --color-gold:    #C9A24B;
+
+  /* ── Fantasy Glow ── */
+  --color-rose:    #E6A9C0;
+  --color-lilac:   #B9A6E0;
+
+  /* ── Spacing ── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-4:   16px;
+  --space-6:   24px;
+  --space-10:  40px;
+  --space-20:  80px;
+  --space-32:  128px;
+
+  /* ── Motion ── */
+  --duration-fast:      150ms;
+  --duration-base:      350ms;
+  --duration-slow:      700ms;
+  --duration-cinematic: 1200ms;
+  --ease-silk:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-gentle: cubic-bezier(0.4, 0, 0.2, 1);
+}

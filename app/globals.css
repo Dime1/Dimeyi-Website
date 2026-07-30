@@ -1,26 +1,39 @@
 @import "tailwindcss";
+@import "../config/tokens.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Colors — makes bg-ivory, text-gold, border-rose, etc. work */
+  --color-ivory:  #FBF6F0;
+  --color-blush:  #F7E8E4;
+  --color-plum:   #231622;
+  --color-indigo: #2C2A4A;
+  --color-gold:   #C9A24B;
+  --color-rose:   #E6A9C0;
+  --color-lilac:  #B9A6E0;
+
+  /* Typography */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-script:  "Cormorant Garamond", Georgia, serif;
+  --font-sans:    "Inter", system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    background: var(--color-ivory);
+    color: var(--color-plum);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  * {
+    box-sizing: border-box;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
