@@ -1,0 +1,33 @@
+'use client'
+
+import { useEffect } from 'react'
+import Lenis         from '@studio-freight/lenis'
+import { useReducedMotion } from '@/lib/hooks/useReducedMotion'
+
+export function LenisProvider({ children }: { children: React.ReactNode }) {
+  const reduced = useReducedMotion()
+
+  useEffect(() => {
+    if (reduced) return
+
+    const lenis = new Lenis({
+      duration:     1.2,
+      easing:       (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel:  true,
+    })
+
+    let raf: number
+    function tick(time: number) {
+      lenis.raf(time)
+      raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+
+    return () => {
+      cancelAnimationFrame(raf)
+      lenis.destroy()
+    }
+  }, [reduced])
+
+  return <>{children}</>
+}
