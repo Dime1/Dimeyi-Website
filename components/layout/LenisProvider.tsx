@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import Lenis         from '@studio-freight/lenis'
+import Lenis         from 'lenis'
 import { useReducedMotion } from '@/lib/hooks/useReducedMotion'
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {

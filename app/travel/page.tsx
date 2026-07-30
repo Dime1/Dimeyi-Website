@@ -3,6 +3,7 @@ import { GatedPage }      from '@/components/ui/GatedPage'
 import { UNLOCK_DATES }   from '@/config/reveal'
 
 export default function TravelPage() {
+  // Plan 4 will replace undefined with a real RSVP status read from a cookie/session
   const rsvpStatus = undefined
   const access     = getPageAccess('travel', rsvpStatus)
 
