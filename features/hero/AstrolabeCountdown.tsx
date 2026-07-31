@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { WEDDING } from '@/config/content'
-import { useReducedMotion } from '@/lib/hooks/useReducedMotion'
+import { WEDDING }             from '@/config/content'
+import { useReducedMotion }    from '@/lib/hooks/useReducedMotion'
 
 interface TimeLeft {
   days:    number
@@ -26,34 +26,42 @@ const CX   = 110
 const CY   = 110
 const R    = 88
 
+// Round to 4dp so server HTML and client JS produce identical strings
+function r(n: number) { return Math.round(n * 10000) / 10000 }
+
 const TICKS = Array.from({ length: 60 }, (_, i) => {
   const angle = (i * 6 - 90) * (Math.PI / 180)
   const major = i % 5 === 0
   const inner = major ? R - 10 : R - 5
   return {
-    x1: CX + inner * Math.cos(angle),
-    y1: CY + inner * Math.sin(angle),
-    x2: CX + R * Math.cos(angle),
-    y2: CY + R * Math.sin(angle),
+    x1: r(CX + inner * Math.cos(angle)),
+    y1: r(CY + inner * Math.sin(angle)),
+    x2: r(CX + R * Math.cos(angle)),
+    y2: r(CY + R * Math.sin(angle)),
     major,
   }
 })
 
 export function AstrolabeCountdown() {
-  const [time, setTime] = useState<TimeLeft>(getTimeLeft)
+  // null on server + initial client render → no hydration mismatch
+  const [time, setTime] = useState<TimeLeft | null>(null)
   const reduced = useReducedMotion()
 
   useEffect(() => {
+    setTime(getTimeLeft())
     if (reduced) return
     const id = setInterval(() => setTime(getTimeLeft()), 1000)
     return () => clearInterval(id)
   }, [reduced])
 
-  const secondsInDay = 86400
-  const secondsToday = (Date.now() / 1000) % secondsInDay
-  const pointerAngle = reduced ? 0 : (secondsToday / secondsInDay) * 360
+  // 0 on server; real angle only after mount
+  const pointerAngle = time && !reduced
+    ? r(((Date.now() / 1000) % 86400 / 86400) * 360)
+    : 0
 
-  const ariaLabel = `${time.days} days, ${time.hours} hours, ${time.minutes} minutes, ${time.seconds} seconds until the wedding`
+  const ariaLabel = time
+    ? `${time.days} days, ${time.hours} hours, ${time.minutes} minutes, ${time.seconds} seconds until the wedding`
+    : 'Counting down to the wedding'
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -107,7 +115,7 @@ export function AstrolabeCountdown() {
           fontFamily="var(--font-display)" fontWeight="700" opacity="0.9"
           aria-hidden="true"
         >
-          {time.days}
+          {time?.days ?? '--'}
         </text>
 
         {/* DAYS label */}
@@ -125,10 +133,12 @@ export function AstrolabeCountdown() {
       {/* HH:MM:SS */}
       <p
         role="timer"
-        aria-label={`${time.hours} hours ${time.minutes} minutes ${time.seconds} seconds`}
+        aria-label={time ? `${time.hours} hours ${time.minutes} minutes ${time.seconds} seconds` : 'loading'}
         className="font-sans text-[11px] tracking-[0.22em] text-gold/35 tabular-nums"
       >
-        {String(time.hours).padStart(2,'0')} : {String(time.minutes).padStart(2,'0')} : {String(time.seconds).padStart(2,'0')}
+        {time
+          ? `${String(time.hours).padStart(2,'0')} : ${String(time.minutes).padStart(2,'0')} : ${String(time.seconds).padStart(2,'0')}`
+          : '-- : -- : --'}
       </p>
     </div>
   )
