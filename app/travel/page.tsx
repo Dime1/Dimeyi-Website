@@ -1,3 +1,4 @@
+import { cookies }         from 'next/headers'
 import { getPageAccess }   from '@/lib/gate'
 import { GatedPage }       from '@/components/ui/GatedPage'
 import { LogisticsCard }   from '@/features/travel/LogisticsCard'
@@ -5,10 +6,10 @@ import { MapSection }      from '@/features/travel/MapSection'
 import { UNLOCK_DATES }    from '@/config/reveal'
 import { TRAVEL_INFO }     from '@/config/content'
 
-export default function TravelPage() {
-  // Plan 4 will replace undefined with a real RSVP status read from a cookie/session
-  const rsvpStatus = undefined
-  const access     = getPageAccess('travel', rsvpStatus)
+export default async function TravelPage() {
+  const cookieStore = await cookies()
+  const rsvpStatus  = cookieStore.get('rsvp_status')?.value
+  const access      = getPageAccess('travel', rsvpStatus)
 
   const teaser = (
     <div className="min-h-screen bg-plum flex flex-col items-center justify-center gap-6 px-6 text-center">
