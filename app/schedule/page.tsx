@@ -1,6 +1,9 @@
-import { getPageAccess }  from '@/lib/gate'
-import { GatedPage }      from '@/components/ui/GatedPage'
-import { UNLOCK_DATES }   from '@/config/reveal'
+import { getPageAccess }   from '@/lib/gate'
+import { GatedPage }       from '@/components/ui/GatedPage'
+import { ScriptureStrip }  from '@/components/ui/ScriptureStrip'
+import { EventBlock }      from '@/features/schedule/EventBlock'
+import { UNLOCK_DATES }    from '@/config/reveal'
+import { EVENTS, VERSES }  from '@/config/content'
 
 export default function SchedulePage() {
   const access = getPageAccess('schedule')
@@ -21,10 +24,25 @@ export default function SchedulePage() {
 
   return (
     <GatedPage state={access.state} unlocksAt={access.unlocksAt} teaserContent={teaser}>
-      <div className="min-h-screen py-32 px-6 text-center">
-        <h1 className="font-display text-4xl text-plum">Schedule</h1>
-        <p className="font-sans text-plum/30 text-xs tracking-widest uppercase mt-4">Event blocks — Plan 3</p>
-      </div>
+      <section className="max-w-3xl mx-auto px-6 py-32">
+        <h1 className="font-display text-4xl md:text-5xl text-plum text-center mb-4">
+          Schedule
+        </h1>
+        <p className="font-sans text-[11px] tracking-[0.18em] uppercase text-plum/30 text-center mb-16">
+          February 18, 2027 · Three celebrations
+        </p>
+
+        <div className="space-y-8">
+          {[...EVENTS].map(event => (
+            <EventBlock key={event.id} event={event} />
+          ))}
+        </div>
+
+        <ScriptureStrip
+          text={VERSES.schedule.text}
+          reference={VERSES.schedule.ref}
+        />
+      </section>
     </GatedPage>
   )
 }
