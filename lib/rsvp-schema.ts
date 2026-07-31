@@ -17,11 +17,9 @@ export const stepDetailsSchema = z.object({
 })
 export type StepDetailsValues = z.infer<typeof stepDetailsSchema>
 
-export const rsvpSchema = z.object({
-  name:         z.string().min(2),
-  email:        z.string().email(),
+export const rsvpSchema = stepEntrySchema.extend({
   attending:    z.boolean(),
-  guest_count:  z.number().int().min(1).max(10).optional(),
+  guest_count:  z.number().int().max(10).optional(),
   dietary:      z.string().max(200).optional(),
   song_request: z.string().max(100).optional(),
   asoebi_size:  z.enum(ASOEBI_SIZES).optional(),
