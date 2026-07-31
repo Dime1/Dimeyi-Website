@@ -1,6 +1,9 @@
-import { getPageAccess }  from '@/lib/gate'
-import { GatedPage }      from '@/components/ui/GatedPage'
-import { UNLOCK_DATES }   from '@/config/reveal'
+import { getPageAccess }   from '@/lib/gate'
+import { GatedPage }       from '@/components/ui/GatedPage'
+import { LogisticsCard }   from '@/features/travel/LogisticsCard'
+import { MapSection }      from '@/features/travel/MapSection'
+import { UNLOCK_DATES }    from '@/config/reveal'
+import { TRAVEL_INFO }     from '@/config/content'
 
 export default function TravelPage() {
   // Plan 4 will replace undefined with a real RSVP status read from a cookie/session
@@ -22,13 +25,34 @@ export default function TravelPage() {
   )
 
   const partial = (
-    <div className="min-h-screen py-32 px-6 text-center">
-      <h1 className="font-display text-4xl text-plum">Travel</h1>
-      <p className="font-sans text-plum/40 text-sm mt-4">General location info is shown here.</p>
-      <p className="font-sans text-plum/30 text-xs tracking-widest uppercase mt-2">
-        RSVP to unlock full address &amp; hotel details — Plan 3
+    <section className="max-w-3xl mx-auto px-6 py-32">
+      <h1 className="font-display text-4xl md:text-5xl text-plum text-center mb-4">
+        Travel
+      </h1>
+      <p className="font-sans text-[11px] tracking-[0.18em] uppercase text-plum/30 text-center mb-16">
+        General logistics — RSVP to unlock full details
       </p>
-    </div>
+
+      <div className="border border-gold/15 rounded-sm px-8 py-8 bg-ivory/60 mb-6">
+        <div className="w-8 h-px bg-gold/40 mb-6" aria-hidden="true" />
+        <h2 className="font-display text-xl text-plum mb-5">Location</h2>
+        <LogisticsCard label="Country"  value={TRAVEL_INFO.country} />
+        <LogisticsCard label="City"     value={TRAVEL_INFO.city} />
+        <LogisticsCard label="Airport"  value={TRAVEL_INFO.airportName} subValue={TRAVEL_INFO.airportDistance} />
+      </div>
+
+      <div className="border border-gold/15 rounded-sm px-8 py-8 bg-ivory/60 mb-8">
+        <div className="w-8 h-px bg-gold/40 mb-6" aria-hidden="true" />
+        <h2 className="font-display text-xl text-plum mb-5">Recommended Hotels</h2>
+        {[...TRAVEL_INFO.hotels].map(hotel => (
+          <LogisticsCard key={hotel.name} label={hotel.area} value={hotel.name} />
+        ))}
+      </div>
+
+      <p className="font-sans text-xs text-center text-plum/35 tracking-[0.12em] uppercase">
+        RSVP to unlock addresses, hotel booking codes, and the interactive venue map
+      </p>
+    </section>
   )
 
   return (
@@ -38,12 +62,38 @@ export default function TravelPage() {
       teaserContent={teaser}
       partialContent={partial}
     >
-      <div className="min-h-screen py-32 px-6 text-center">
-        <h1 className="font-display text-4xl text-plum">Travel</h1>
-        <p className="font-sans text-plum/30 text-xs tracking-widest uppercase mt-4">
-          Full map + details — Plan 3
+      <section className="max-w-3xl mx-auto px-6 py-32">
+        <h1 className="font-display text-4xl md:text-5xl text-plum text-center mb-4">
+          Travel
+        </h1>
+        <p className="font-sans text-[11px] tracking-[0.18em] uppercase text-plum/30 text-center mb-16">
+          Everything you need to find us
         </p>
-      </div>
+
+        <div className="mb-8">
+          <MapSection />
+        </div>
+
+        <div className="border border-gold/15 rounded-sm px-8 py-8 bg-ivory/60 mb-6">
+          <div className="w-8 h-px bg-gold/40 mb-6" aria-hidden="true" />
+          <h2 className="font-display text-xl text-plum mb-5">Venues</h2>
+          <LogisticsCard label="Ceremony"  value={TRAVEL_INFO.ceremonyAddress} />
+          <LogisticsCard label="Reception" value={TRAVEL_INFO.receptionAddress} />
+        </div>
+
+        <div className="border border-gold/15 rounded-sm px-8 py-8 bg-ivory/60">
+          <div className="w-8 h-px bg-gold/40 mb-6" aria-hidden="true" />
+          <h2 className="font-display text-xl text-plum mb-5">Hotels</h2>
+          {[...TRAVEL_INFO.hotels].map(hotel => (
+            <LogisticsCard
+              key={hotel.name}
+              label={hotel.name}
+              value={hotel.area}
+              subValue={hotel.bookingCode.startsWith('[') ? undefined : `Booking code: ${hotel.bookingCode}`}
+            />
+          ))}
+        </div>
+      </section>
     </GatedPage>
   )
 }
