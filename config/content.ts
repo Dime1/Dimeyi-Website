@@ -184,3 +184,46 @@ export const NAV_LINKS = [
   { label: 'Guestbook',    href: '/guestbook',    gated: false },
   { label: 'Registry',     href: '/registry',     gated: false },
 ] as const
+
+export const LOVE_LETTERS = [
+  {
+    id:      'letter-dimeji',
+    from:    'Dimeji',
+    to:      'Feyisogo',
+    date:    '[LETTER_DATE_1]',
+    preview: '[LETTER_1_OPENING_LINE]',
+    body:    '[LETTER_1_FULL_TEXT]',
+  },
+  {
+    id:      'letter-feyisogo',
+    from:    'Feyisogo',
+    to:      'Dimeji',
+    date:    '[LETTER_DATE_2]',
+    preview: '[LETTER_2_OPENING_LINE]',
+    body:    '[LETTER_2_FULL_TEXT]',
+  },
+] as const
+
+export const TRAVEL_INFO = {
+  country:         'Nigeria',
+  city:            '[CITY]',
+  region:          '[STATE]',
+  airportName:     '[AIRPORT_NAME]',
+  airportDistance: '[X km] from venue',
+  hotels: [
+    {
+      name:        '[HOTEL_1_NAME]',
+      area:        '[HOTEL_1_AREA]',
+      bookingCode: '[HOTEL_1_BOOKING_CODE]',
+      url:         '[HOTEL_1_URL]',
+    },
+    {
+      name:        '[HOTEL_2_NAME]',
+      area:        '[HOTEL_2_AREA]',
+      bookingCode: '[HOTEL_2_BOOKING_CODE]',
+      url:         '[HOTEL_2_URL]',
+    },
+  ],
+  ceremonyAddress:  '[CEREMONY_FULL_ADDRESS]',
+  receptionAddress: '[RECEPTION_FULL_ADDRESS]',
+} as const
