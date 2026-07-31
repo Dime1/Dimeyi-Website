@@ -20,7 +20,7 @@ beforeEach(() => {
   mockInsert.mockResolvedValue({ error: null })
   vi.mocked(supabaseModule.getSupabase).mockReturnValue({
     from: () => ({ insert: mockInsert }),
-  } as ReturnType<typeof supabaseModule.getSupabase>)
+  } as unknown as ReturnType<typeof supabaseModule.getSupabase>)
 })
 
 describe('POST /api/rsvp', () => {
