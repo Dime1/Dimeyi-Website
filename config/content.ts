@@ -176,32 +176,12 @@ export const AUDIO = {
 
 export const NAV_LINKS = [
   { label: 'Our Story',    href: '/our-story',    gated: false },
-  { label: 'Love Letters', href: '/love-letters', gated: false },
   { label: 'Schedule',     href: '/schedule',     gated: true  },
   { label: 'Travel',       href: '/travel',       gated: true  },
   { label: 'RSVP',         href: '/rsvp',         gated: false },
   { label: 'Gallery',      href: '/gallery',      gated: false },
   { label: 'Guestbook',    href: '/guestbook',    gated: false },
   { label: 'Registry',     href: '/registry',     gated: false },
-] as const
-
-export const LOVE_LETTERS = [
-  {
-    id:      'letter-dimeji',
-    from:    'Dimeji',
-    to:      'Feyisogo',
-    date:    '[LETTER_DATE_1]',
-    preview: '[LETTER_1_OPENING_LINE]',
-    body:    '[LETTER_1_FULL_TEXT]',
-  },
-  {
-    id:      'letter-feyisogo',
-    from:    'Feyisogo',
-    to:      'Dimeji',
-    date:    '[LETTER_DATE_2]',
-    preview: '[LETTER_2_OPENING_LINE]',
-    body:    '[LETTER_2_FULL_TEXT]',
-  },
 ] as const
 
 export const TRAVEL_INFO = {
@@ -227,3 +207,20 @@ export const TRAVEL_INFO = {
   ceremonyAddress:  '[CEREMONY_FULL_ADDRESS]',
   receptionAddress: '[RECEPTION_FULL_ADDRESS]',
 } as const
+
+export const GALLERY_IMAGES = [
+  { id: 'g1', src: '/images/gallery/[PHOTO_1].jpg', alt: '[PHOTO_1_ALT]', category: 'pre-wedding'  },
+  { id: 'g2', src: '/images/gallery/[PHOTO_2].jpg', alt: '[PHOTO_2_ALT]', category: 'traditional'  },
+  { id: 'g3', src: '/images/gallery/[PHOTO_3].jpg', alt: '[PHOTO_3_ALT]', category: 'family'       },
+  { id: 'g4', src: '/images/gallery/[PHOTO_4].jpg', alt: '[PHOTO_4_ALT]', category: 'pre-wedding'  },
+  { id: 'g5', src: '/images/gallery/[PHOTO_5].jpg', alt: '[PHOTO_5_ALT]', category: 'traditional'  },
+  { id: 'g6', src: '/images/gallery/[PHOTO_6].jpg', alt: '[PHOTO_6_ALT]', category: 'family'       },
+] as const
+
+export type GalleryImage    = typeof GALLERY_IMAGES[number]
+export type GalleryCategory = 'all' | GalleryImage['category']
+
+export const REGISTRY_LINKS = [
+  { id: 'r1', label: '[REGISTRY_1_NAME]', url: '[REGISTRY_1_URL]', note: '[REGISTRY_1_NOTE]' },
+  { id: 'r2', label: '[REGISTRY_2_NAME]', url: '[REGISTRY_2_URL]', note: '[REGISTRY_2_NOTE]' },
+] as const
