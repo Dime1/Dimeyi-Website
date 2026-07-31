@@ -3,53 +3,48 @@ import { stepEntrySchema, stepDetailsSchema, rsvpSchema } from '@/lib/rsvp-schem
 
 describe('stepEntrySchema', () => {
   it('rejects short name', () => {
-    expect(stepEntrySchema.safeParse({ name: 'X', email: 'a@b.com' }).success).toBe(false)
+    expect(stepEntrySchema.safeParse({ name: 'X', email: 'a@b.com', phone: '1234567' }).success).toBe(false)
   })
 
   it('rejects invalid email', () => {
-    expect(stepEntrySchema.safeParse({ name: 'Ola', email: 'notanemail' }).success).toBe(false)
+    expect(stepEntrySchema.safeParse({ name: 'Ola', email: 'notanemail', phone: '1234567' }).success).toBe(false)
+  })
+
+  it('rejects short phone', () => {
+    expect(stepEntrySchema.safeParse({ name: 'Ola', email: 'ola@test.com', phone: '123' }).success).toBe(false)
   })
 
   it('accepts valid entry', () => {
-    expect(stepEntrySchema.safeParse({ name: 'Ola', email: 'ola@test.com' }).success).toBe(true)
+    expect(stepEntrySchema.safeParse({ name: 'Ola', email: 'ola@test.com', phone: '+234 801 234 5678' }).success).toBe(true)
   })
 })
 
 describe('stepDetailsSchema', () => {
-  it('rejects guest_count of 0', () => {
-    expect(stepDetailsSchema.safeParse({ guest_count: 0 }).success).toBe(false)
+  it('accepts empty details (all optional)', () => {
+    expect(stepDetailsSchema.safeParse({}).success).toBe(true)
   })
 
-  it('rejects guest_count above 10', () => {
-    expect(stepDetailsSchema.safeParse({ guest_count: 11 }).success).toBe(false)
+  it('accepts a valid aso-ebi size', () => {
+    expect(stepDetailsSchema.safeParse({ asoebi_size: 'M' }).success).toBe(true)
   })
 
-  it('accepts valid details', () => {
-    expect(stepDetailsSchema.safeParse({
-      guest_count: 2,
-      dietary: 'Vegetarian',
-      song_request: 'Perfect',
-      asoebi_size: 'M',
-    }).success).toBe(true)
-  })
-
-  it('accepts details with no optional fields', () => {
-    expect(stepDetailsSchema.safeParse({ guest_count: 1 }).success).toBe(true)
+  it('rejects an invalid aso-ebi size', () => {
+    expect(stepDetailsSchema.safeParse({ asoebi_size: 'XXXL' }).success).toBe(false)
   })
 })
 
 describe('rsvpSchema', () => {
   it('accepts attending=false with no details', () => {
-    expect(rsvpSchema.safeParse({ name: 'Ola', email: 'ola@test.com', attending: false }).success).toBe(true)
+    expect(rsvpSchema.safeParse({ name: 'Ola', email: 'ola@test.com', phone: '1234567', attending: false }).success).toBe(true)
   })
 
-  it('rejects attending=true with no guest_count', () => {
-    expect(rsvpSchema.safeParse({ name: 'Ola', email: 'ola@test.com', attending: true }).success).toBe(false)
-  })
-
-  it('accepts attending=true with guest_count', () => {
+  it('accepts attending=true with aso-ebi size', () => {
     expect(rsvpSchema.safeParse({
-      name: 'Ola', email: 'ola@test.com', attending: true, guest_count: 2,
+      name: 'Ola', email: 'ola@test.com', phone: '1234567', attending: true, asoebi_size: 'L',
     }).success).toBe(true)
+  })
+
+  it('accepts attending=true with no optional fields', () => {
+    expect(rsvpSchema.safeParse({ name: 'Ola', email: 'ola@test.com', phone: '1234567', attending: true }).success).toBe(true)
   })
 })

@@ -25,36 +25,35 @@ beforeEach(() => {
 
 describe('POST /api/rsvp', () => {
   it('returns 422 for missing name', async () => {
-    const res = await POST(makeRequest({ email: 'a@b.com', attending: false }))
+    const res = await POST(makeRequest({ email: 'a@b.com', phone: '1234567', attending: false }))
     expect(res.status).toBe(422)
   })
 
   it('returns 422 for invalid email', async () => {
-    const res = await POST(makeRequest({ name: 'Ola', email: 'bad', attending: false }))
+    const res = await POST(makeRequest({ name: 'Ola', email: 'bad', phone: '1234567', attending: false }))
     expect(res.status).toBe(422)
   })
 
-  it('returns 422 when attending=true but no guest_count', async () => {
-    const res = await POST(makeRequest({ name: 'Ola', email: 'ola@test.com', attending: true }))
+  it('returns 422 for missing phone', async () => {
+    const res = await POST(makeRequest({ name: 'Ola', email: 'ola@test.com', attending: false }))
     expect(res.status).toBe(422)
   })
 
   it('inserts and sets cookie for attending=false', async () => {
-    const res = await POST(makeRequest({ name: 'Ola', email: 'ola@test.com', attending: false }))
+    const res = await POST(makeRequest({ name: 'Ola', email: 'ola@test.com', phone: '1234567', attending: false }))
     const json = await res.json()
     expect(res.status).toBe(200)
     expect(json.status).toBe('not_attending')
     expect(mockInsert).toHaveBeenCalledWith(
-      expect.objectContaining({ name: 'Ola', email: 'ola@test.com', attending: false }),
+      expect.objectContaining({ name: 'Ola', email: 'ola@test.com', phone: '1234567', attending: false }),
     )
     const cookie = res.headers.get('set-cookie') ?? ''
     expect(cookie).toContain('rsvp_status=not_attending')
   })
 
-  it('inserts and sets cookie for attending=true with details', async () => {
+  it('inserts and sets cookie for attending=true', async () => {
     const res = await POST(makeRequest({
-      name: 'Fey', email: 'fey@test.com', attending: true, guest_count: 2,
-      dietary: 'Vegan', song_request: 'Perfect', asoebi_size: 'M',
+      name: 'Fey', email: 'fey@test.com', phone: '9876543', attending: true, asoebi_size: 'M',
     }))
     const json = await res.json()
     expect(res.status).toBe(200)
@@ -65,7 +64,7 @@ describe('POST /api/rsvp', () => {
 
   it('returns 500 when Supabase errors', async () => {
     mockInsert.mockResolvedValueOnce({ error: new Error('db error') })
-    const res = await POST(makeRequest({ name: 'Ola', email: 'ola@test.com', attending: false }))
+    const res = await POST(makeRequest({ name: 'Ola', email: 'ola@test.com', phone: '1234567', attending: false }))
     expect(res.status).toBe(500)
   })
 })

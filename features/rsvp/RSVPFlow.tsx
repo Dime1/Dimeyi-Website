@@ -12,13 +12,11 @@ import type { StepEntryValues, StepDetailsValues, RSVPPayload } from '@/lib/rsvp
 type Step = 1 | 2 | 3 | 4
 
 interface Accumulated {
-  name?:         string
-  email?:        string
-  attending?:    boolean
-  guest_count?:  number
-  dietary?:      string
-  song_request?: string
-  asoebi_size?:  string
+  name?:        string
+  email?:       string
+  phone?:       string
+  attending?:   boolean
+  asoebi_size?: string
 }
 
 const STEP_TITLES: Record<Step, string> = {
@@ -62,23 +60,20 @@ export function RSVPFlow() {
     const next = { ...data, attending }
     setData(next)
     if (!attending) {
-      submitRSVP({ name: next.name!, email: next.email!, attending: false })
+      submitRSVP({ name: next.name!, email: next.email!, phone: next.phone!, attending: false })
     } else {
       setStep(3)
     }
   }
 
   function handleStep3(values: StepDetailsValues) {
-    const payload: RSVPPayload = {
-      name:         data.name!,
-      email:        data.email!,
-      attending:    true,
-      guest_count:  values.guest_count,
-      dietary:      values.dietary,
-      song_request: values.song_request,
-      asoebi_size:  values.asoebi_size,
-    }
-    submitRSVP(payload)
+    submitRSVP({
+      name:        data.name!,
+      email:       data.email!,
+      phone:       data.phone!,
+      attending:   true,
+      asoebi_size: values.asoebi_size,
+    })
   }
 
   return (
@@ -108,7 +103,7 @@ export function RSVPFlow() {
         >
           {step === 1 && (
             <StepEntry
-              initial={{ name: data.name, email: data.email }}
+              initial={{ name: data.name, email: data.email, phone: data.phone }}
               onNext={handleStep1}
             />
           )}
@@ -120,7 +115,7 @@ export function RSVPFlow() {
           )}
           {step === 3 && (
             <StepDetails
-              initial={{ guest_count: data.guest_count ?? 1 }}
+              initial={{}}
               onNext={handleStep3}
               isSubmitting={isSubmitting}
             />

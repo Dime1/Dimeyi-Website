@@ -9,6 +9,9 @@ interface StepEntryProps {
   onNext:  (data: StepEntryValues) => void
 }
 
+const inputClass = 'w-full border border-gold/25 rounded-sm bg-ivory/60 px-4 py-3 font-sans text-sm text-plum placeholder:text-plum/25 focus:outline-none focus:border-gold/60 transition-colors'
+const labelClass = 'block font-sans text-[10px] tracking-[0.18em] uppercase text-plum/50 mb-2'
+
 export function StepEntry({ initial, onNext }: StepEntryProps) {
   const { register, handleSubmit, formState: { errors } } = useForm<StepEntryValues>({
     resolver:      zodResolver(stepEntrySchema),
@@ -16,48 +19,49 @@ export function StepEntry({ initial, onNext }: StepEntryProps) {
   })
 
   return (
-    <form onSubmit={handleSubmit(onNext)} className="space-y-6" noValidate>
+    <form onSubmit={handleSubmit((data) => onNext(data))} className="space-y-6" noValidate>
       <div>
-        <label
-          htmlFor="rsvp-name"
-          className="block font-sans text-[10px] tracking-[0.18em] uppercase text-plum/50 mb-2"
-        >
-          Your Name
-        </label>
+        <label htmlFor="rsvp-name" className={labelClass}>Your Name</label>
         <input
           id="rsvp-name"
           type="text"
           autoComplete="name"
-          className="w-full border border-gold/25 rounded-sm bg-ivory/60 px-4 py-3 font-sans text-sm text-plum placeholder:text-plum/25 focus:outline-none focus:border-gold/60 transition-colors"
+          className={inputClass}
           placeholder="Full name"
           {...register('name')}
         />
         {errors.name && (
-          <p role="alert" className="mt-2 font-sans text-xs text-red-600/80">
-            {errors.name.message}
-          </p>
+          <p role="alert" className="mt-2 font-sans text-xs text-red-600/80">{errors.name.message}</p>
         )}
       </div>
 
       <div>
-        <label
-          htmlFor="rsvp-email"
-          className="block font-sans text-[10px] tracking-[0.18em] uppercase text-plum/50 mb-2"
-        >
-          Email
-        </label>
+        <label htmlFor="rsvp-email" className={labelClass}>Email</label>
         <input
           id="rsvp-email"
           type="email"
           autoComplete="email"
-          className="w-full border border-gold/25 rounded-sm bg-ivory/60 px-4 py-3 font-sans text-sm text-plum placeholder:text-plum/25 focus:outline-none focus:border-gold/60 transition-colors"
+          className={inputClass}
           placeholder="your@email.com"
           {...register('email')}
         />
         {errors.email && (
-          <p role="alert" className="mt-2 font-sans text-xs text-red-600/80">
-            {errors.email.message}
-          </p>
+          <p role="alert" className="mt-2 font-sans text-xs text-red-600/80">{errors.email.message}</p>
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="rsvp-phone" className={labelClass}>Phone Number</label>
+        <input
+          id="rsvp-phone"
+          type="tel"
+          autoComplete="tel"
+          className={inputClass}
+          placeholder="+1 234 567 8900"
+          {...register('phone')}
+        />
+        {errors.phone && (
+          <p role="alert" className="mt-2 font-sans text-xs text-red-600/80">{errors.phone.message}</p>
         )}
       </div>
 
