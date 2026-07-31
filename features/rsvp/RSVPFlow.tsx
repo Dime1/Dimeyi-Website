@@ -35,6 +35,7 @@ export function RSVPFlow() {
   const [error, setError]               = useState<string | null>(null)
 
   async function submitRSVP(payload: RSVPPayload) {
+    if (isSubmitting) return
     setIsSubmitting(true)
     setError(null)
     try {
