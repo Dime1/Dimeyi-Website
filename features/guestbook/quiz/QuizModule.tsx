@@ -16,17 +16,20 @@ export function QuizModule() {
   const [totalTimeMs,  setTotalTimeMs]  = useState(0)
   const [finalScore,   setFinalScore]   = useState<{ correct: number; total: number } | null>(null)
   const [submitError,  setSubmitError]  = useState<string | null>(null)
+  const [submitting,   setSubmitting]   = useState(false)
 
   const questions = [...QUIZ_QUESTIONS]
 
-  function handleAnswer(correct: boolean, timeTakenMs: number) {
+  async function handleAnswer(correct: boolean, timeTakenMs: number) {
     const newCorrect = correctCount + (correct ? 1 : 0)
     const newTime    = totalTimeMs + timeTakenMs
 
     if (questionIdx + 1 >= questions.length) {
       setFinalScore({ correct: newCorrect, total: questions.length })
+      setSubmitting(true)
+      await submitScore(newCorrect, newTime)
+      setSubmitting(false)
       setPhase('done')
-      submitScore(newCorrect, newTime)
     } else {
       setCorrectCount(newCorrect)
       setTotalTimeMs(newTime)
@@ -36,11 +39,12 @@ export function QuizModule() {
 
   async function submitScore(score: number, time_taken_ms: number) {
     try {
-      await fetch('/api/quiz', {
+      const res = await fetch('/api/quiz', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({ player_name: name, avatar: avatar!, score, time_taken_ms }),
       })
+      if (!res.ok) setSubmitError('Score could not be saved.')
     } catch {
       setSubmitError('Score could not be saved.')
     }
@@ -87,6 +91,14 @@ export function QuizModule() {
         total={questions.length}
         onAnswer={handleAnswer}
       />
+    )
+  }
+
+  if (submitting) {
+    return (
+      <p className="font-sans text-xs text-plum/30 text-center tracking-widest uppercase py-16">
+        Saving your score…
+      </p>
     )
   }
 

@@ -14,7 +14,8 @@ export async function POST(req: Request) {
   const supabase = getSupabase()
   const { error } = await supabase.from('rsvp').insert(parsed.data)
   if (error) {
-    return NextResponse.json({ error: 'Failed to save RSVP' }, { status: 500 })
+    console.error('[RSVP] Supabase insert error:', error)
+    return NextResponse.json({ error: 'Failed to save RSVP', detail: error.message }, { status: 500 })
   }
 
   const status = parsed.data.attending ? 'attending' : 'not_attending'

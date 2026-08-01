@@ -25,12 +25,12 @@ export function QuizWidgetButton() {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open quiz"
-        className="fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-plum flex items-center justify-center hover:bg-plum/90 transition-colors duration-200"
+        className="fixed bottom-6 left-6 z-50 w-16 h-16 rounded-full bg-plum flex items-center justify-center hover:bg-plum/90 transition-colors duration-200"
         style={{ boxShadow: '0 4px 16px rgba(91,61,110,0.4)' }}
       >
         <svg
-          width="22"
-          height="22"
+          width="26"
+          height="26"
           viewBox="0 0 24 24"
           fill="none"
           stroke="white"

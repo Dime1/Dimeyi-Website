@@ -238,12 +238,14 @@ export const TRAVEL_INFO = {
 } as const
 
 export const GALLERY_IMAGES = [
-  { id: 'g1', src: '/images/gallery/[PHOTO_1].jpg', alt: '[PHOTO_1_ALT]', category: 'couple-journey' },
-  { id: 'g2', src: '/images/gallery/[PHOTO_2].jpg', alt: '[PHOTO_2_ALT]', category: 'proposal'       },
-  { id: 'g3', src: '/images/gallery/[PHOTO_3].jpg', alt: '[PHOTO_3_ALT]', category: 'couple-journey' },
-  { id: 'g4', src: '/images/gallery/[PHOTO_4].jpg', alt: '[PHOTO_4_ALT]', category: 'proposal'       },
-  { id: 'g5', src: '/images/gallery/[PHOTO_5].jpg', alt: '[PHOTO_5_ALT]', category: 'couple-journey' },
-  { id: 'g6', src: '/images/gallery/[PHOTO_6].jpg', alt: '[PHOTO_6_ALT]', category: 'proposal'       },
+  { id: 'g1',  src: 'https://drive.google.com/uc?export=view&id=1Y1gXrAqFtOPD4XbmDUlzU9Cn9qSRAJ_X', alt: 'Feyisogo and Dimeji', category: 'couple-journey' },
+  { id: 'g7',  src: 'https://drive.google.com/uc?export=view&id=1hXUZff0D1oNkQdvvns7VKn6iWyfzc6-1', alt: 'Feyisogo and Dimeji', category: 'proposal'       },
+  { id: 'g8',  src: 'https://drive.google.com/uc?export=view&id=1yBkzOV5VGVP0aSFw3qgKg_2OyW_8ZU6-', alt: 'Feyisogo and Dimeji', category: 'proposal'       },
+  { id: 'g9',  src: 'https://drive.google.com/uc?export=view&id=1T52vhmQ0CI6L1i9CZ6fTWzkxSw_31J-f', alt: 'Feyisogo and Dimeji', category: 'proposal'       },
+  { id: 'g10', src: 'https://drive.google.com/uc?export=view&id=1kC_cUqb4c1l6jGeBILMTF7u2Xvaer2K8', alt: 'Feyisogo and Dimeji', category: 'proposal'       },
+  { id: 'g11', src: 'https://drive.google.com/uc?export=view&id=1KT0LrVfDroU-8Gzhwj-tx_9FWG38Yh19', alt: 'Feyisogo and Dimeji', category: 'proposal'       },
+  { id: 'g12', src: 'https://drive.google.com/uc?export=view&id=19nK8ddAMomAeyMK6zsgRdI5acUKY9Wpv', alt: 'Feyisogo and Dimeji', category: 'proposal'       },
+  { id: 'g13', src: 'https://drive.google.com/uc?export=view&id=1B1IH-UvKwutBRSV1YolRDIvzbZ_Sb0oT', alt: 'Feyisogo and Dimeji', category: 'proposal'       },
 ] as const
 
 export type GalleryImage    = typeof GALLERY_IMAGES[number]

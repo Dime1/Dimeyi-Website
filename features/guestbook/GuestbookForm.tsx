@@ -58,7 +58,7 @@ export function GuestbookForm({ onSubmitted }: GuestbookFormProps) {
         </p>
       )}
       <div>
-        <label className="font-sans text-xs tracking-[0.18em] uppercase text-plum/50 block mb-1">
+        <label className="font-sans text-xs tracking-[0.18em] uppercase text-plum/70 block mb-1">
           Your Name
         </label>
         <input
@@ -67,11 +67,11 @@ export function GuestbookForm({ onSubmitted }: GuestbookFormProps) {
           required
           minLength={2}
           placeholder="Enter your name"
-          className="w-full border border-gold/20 rounded-sm px-4 py-3 font-sans text-sm text-plum bg-transparent focus:outline-none focus:border-gold/50"
+          className="w-full border border-gold/35 rounded-sm px-4 py-3 font-sans text-sm text-plum bg-transparent focus:outline-none focus:border-gold/65"
         />
       </div>
       <div>
-        <label className="font-sans text-xs tracking-[0.18em] uppercase text-plum/50 block mb-1">
+        <label className="font-sans text-xs tracking-[0.18em] uppercase text-plum/70 block mb-1">
           Leave a Message
         </label>
         <textarea
@@ -81,7 +81,7 @@ export function GuestbookForm({ onSubmitted }: GuestbookFormProps) {
           maxLength={500}
           rows={4}
           placeholder="Write your blessing for the couple…"
-          className="w-full border border-gold/20 rounded-sm px-4 py-3 font-sans text-sm text-plum bg-transparent focus:outline-none focus:border-gold/50 resize-none"
+          className="w-full border border-gold/35 rounded-sm px-4 py-3 font-sans text-sm text-plum bg-transparent focus:outline-none focus:border-gold/65 resize-none"
         />
       </div>
       <button

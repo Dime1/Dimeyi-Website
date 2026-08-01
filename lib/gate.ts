@@ -15,7 +15,7 @@ export function getPageAccess(page: GatedPage, rsvpStatus?: string): PageAccess 
     return { state: 'teaser', unlocksAt: unlockDate }
   }
 
-  if (page === 'travel' && rsvpStatus !== 'attending') {
+  if (rsvpStatus !== 'attending') {
     return { state: 'partial' }
   }
 

@@ -21,12 +21,14 @@ export function RegistrySection() {
     <div className="flex gap-8 justify-center flex-wrap py-4">
 
       {/* Card 1 — Give to the Couple */}
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={0}
         aria-label="Flip card to see account details"
         className="w-full max-w-[256px] h-80 cursor-pointer select-none text-left"
         style={{ perspective: '900px' }}
         onClick={() => setCard1Flipped(f => !f)}
+        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setCard1Flipped(f => !f) }}
       >
         <div
           className="relative w-full h-full"
@@ -117,15 +119,17 @@ export function RegistrySection() {
             )}
           </div>
         </div>
-      </button>
+      </div>
 
       {/* Card 2 — Gift List */}
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={0}
         aria-label="Flip card to see gift list"
         className="w-full max-w-[256px] h-80 cursor-pointer select-none text-left"
         style={{ perspective: '900px' }}
         onClick={() => setCard2Flipped(f => !f)}
+        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setCard2Flipped(f => !f) }}
       >
         <div
           className="relative w-full h-full"
@@ -200,7 +204,7 @@ export function RegistrySection() {
             </a>
           </div>
         </div>
-      </button>
+      </div>
 
     </div>
   )

@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
       { source: '/travel',   destination: '/d-day', permanent: true },
     ]
   },
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: '**' },
+    ],
+  },
 }
 
 export default nextConfig
