@@ -184,7 +184,7 @@ export function RegistrySection() {
               onClick={e => { e.preventDefault(); e.stopPropagation() }}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-full py-2 rounded-full bg-plum text-ivory font-sans text-[10px] font-semibold tracking-widest uppercase mb-2 hover:bg-plum/90 transition-colors"
+              className="flex items-center justify-center w-full py-2 rounded-full bg-plum text-ivory font-sans text-xs font-semibold tracking-widest uppercase mb-2 hover:bg-plum/90 transition-colors"
             >
               Amazon List
             </a>
@@ -193,7 +193,7 @@ export function RegistrySection() {
               onClick={e => { e.preventDefault(); e.stopPropagation() }}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-full py-2 rounded-full text-ivory font-sans text-[10px] font-semibold tracking-widest uppercase hover:opacity-80 transition-opacity"
+              className="flex items-center justify-center w-full py-2 rounded-full text-ivory font-sans text-xs font-semibold tracking-widest uppercase hover:opacity-80 transition-opacity"
               style={{ background: '#9c6b38' }}
             >
               Giftwhale
