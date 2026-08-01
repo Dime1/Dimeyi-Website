@@ -220,7 +220,3 @@ export const GALLERY_IMAGES = [
 export type GalleryImage    = typeof GALLERY_IMAGES[number]
 export type GalleryCategory = 'all' | GalleryImage['category']
 
-export const REGISTRY_LINKS = [
-  { id: 'r1', label: '[REGISTRY_1_NAME]', url: '[REGISTRY_1_URL]', note: '[REGISTRY_1_NOTE]' },
-  { id: 'r2', label: '[REGISTRY_2_NAME]', url: '[REGISTRY_2_URL]', note: '[REGISTRY_2_NOTE]' },
-] as const

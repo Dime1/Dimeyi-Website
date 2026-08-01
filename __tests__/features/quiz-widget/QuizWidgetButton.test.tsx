@@ -50,4 +50,12 @@ describe('QuizWidgetButton', () => {
     fireEvent.click(screen.getByRole('button', { name: /open quiz/i }))
     expect(screen.getByTestId('quiz-module')).toBeInTheDocument()
   })
+
+  it('closes the drawer when Escape key is pressed', () => {
+    render(<QuizWidgetButton />)
+    fireEvent.click(screen.getByRole('button', { name: /open quiz/i }))
+    expect(screen.getByRole('dialog')).toBeInTheDocument()
+    fireEvent.keyDown(document, { key: 'Escape' })
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
 })
