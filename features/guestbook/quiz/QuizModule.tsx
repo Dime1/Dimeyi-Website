@@ -50,7 +50,7 @@ export function QuizModule() {
     return (
       <div className="max-w-md mx-auto space-y-8">
         <div>
-          <label className="font-sans text-[10px] tracking-[0.18em] uppercase text-plum/50 block mb-2 text-center">
+          <label className="font-sans text-xs tracking-[0.18em] uppercase text-plum/50 block mb-2 text-center">
             Your Name
           </label>
           <input
@@ -61,7 +61,7 @@ export function QuizModule() {
           />
         </div>
         <div>
-          <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-plum/50 text-center mb-4">
+          <p className="font-sans text-xs tracking-[0.18em] uppercase text-plum/50 text-center mb-4">
             Pick Your Avatar
           </p>
           <AvatarPicker selected={avatar} onSelect={setAvatar} />
@@ -70,7 +70,7 @@ export function QuizModule() {
           type="button"
           disabled={!name.trim() || !avatar}
           onClick={() => setPhase('playing')}
-          className="w-full border border-gold/30 text-plum font-sans text-[10px] tracking-[0.18em] uppercase py-3 hover:bg-plum hover:text-ivory transition-colors duration-300 disabled:opacity-40"
+          className="w-full border border-gold/30 text-plum font-sans text-xs tracking-[0.18em] uppercase py-3 hover:bg-plum hover:text-ivory transition-colors duration-300 disabled:opacity-40"
         >
           Begin the Quiz
         </button>
