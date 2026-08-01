@@ -2,7 +2,7 @@ import { NextRequest, NextResponse }    from 'next/server'
 import { getPageAccess }                from '@/lib/gate'
 import type { GatedPage }               from '@/config/reveal'
 
-const VALID_PAGES: GatedPage[] = ['schedule', 'travel']
+const VALID_PAGES: GatedPage[] = ['d-day']
 
 export async function GET(request: NextRequest) {
   const page       = request.nextUrl.searchParams.get('page') as GatedPage | null
@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
 
   if (!page || !VALID_PAGES.includes(page)) {
     return NextResponse.json(
-      { error: 'Invalid page parameter. Must be "schedule" or "travel".' },
+      { error: 'Invalid page parameter. Must be "d-day".' },
       { status: 400 }
     )
   }
