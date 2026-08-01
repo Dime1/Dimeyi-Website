@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { QuizWidgetButton } from '@/features/quiz-widget/QuizWidgetButton'
 
@@ -13,13 +13,6 @@ vi.mock('framer-motion', () => ({
 vi.mock('@/features/guestbook/quiz/QuizModule', () => ({
   QuizModule: () => <div data-testid="quiz-module">Quiz content</div>,
 }))
-
-beforeEach(() => {
-  vi.stubGlobal('fetch', vi.fn().mockResolvedValue(
-    new Response(JSON.stringify({ scores: [] }), { status: 200 }),
-  ))
-})
-afterEach(() => { vi.unstubAllGlobals() })
 
 describe('QuizWidgetButton', () => {
   it('renders the trigger button', () => {

@@ -1,10 +1,19 @@
 'use client'
-import { useState }                        from 'react'
+import { useState, useEffect }             from 'react'
 import { AnimatePresence, motion }          from 'framer-motion'
 import { QuizModule }                       from '@/features/guestbook/quiz/QuizModule'
 
 export function QuizWidgetButton() {
   const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (!open) return
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [open])
 
   return (
     <>
@@ -49,6 +58,7 @@ export function QuizWidgetButton() {
             <motion.div
               key="quiz-drawer"
               role="dialog"
+              aria-modal={true}
               aria-label="How Well Do You Know Us?"
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
