@@ -166,6 +166,36 @@ export const QUIZ_QUESTIONS = [
     options: ['April 2018', 'December 2023', 'January 2, 2025', 'March 2026'],
     answer: 2,
   },
+  {
+    id: 'q6',
+    question: 'Which country did Feyisogo travel to for the first time to visit Dimeji?',
+    options: ['United Kingdom', 'United States', 'Germany', 'Canada'],
+    answer: 2,
+  },
+  {
+    id: 'q7',
+    question: 'Where were Dimeji and Feyisogo when the conversation about their future turned serious?',
+    options: ['A rooftop restaurant in Lagos', 'Museum of the Bible, Washington D.C.', 'A beach in Mallorca', 'The Covenant University chapel'],
+    answer: 1,
+  },
+  {
+    id: 'q8',
+    question: 'In which month did Dimeji quietly begin building a wedding playlist?',
+    options: ['January 2024', 'April 2024', 'December 2024', 'March 2025'],
+    answer: 1,
+  },
+  {
+    id: 'q9',
+    question: 'Where did both families first spend meaningful time together?',
+    options: ['Mallorca, Spain', 'Washington D.C., USA', 'Lagos, Nigeria', 'Frankfurt, Germany'],
+    answer: 2,
+  },
+  {
+    id: 'q10',
+    question: 'What was the setting Dimeji chose for the proposal in Mallorca?',
+    options: ['A rooftop at sunset', 'A beach at midnight', 'A quiet picnic overlooking a vineyard', 'A private boat'],
+    answer: 2,
+  },
 ] as const
 
 export const AUDIO = {

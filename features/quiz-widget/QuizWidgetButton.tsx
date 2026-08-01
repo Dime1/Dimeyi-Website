@@ -1,7 +1,7 @@
 'use client'
-import { useState, useEffect }             from 'react'
-import { AnimatePresence, motion }          from 'framer-motion'
-import { QuizModule }                       from '@/features/guestbook/quiz/QuizModule'
+import { useState, useEffect }    from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { QuizModule }              from '@/features/guestbook/quiz/QuizModule'
 
 export function QuizWidgetButton() {
   const [open, setOpen] = useState(false)
@@ -13,6 +13,11 @@ export function QuizWidgetButton() {
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
+  }, [open])
+
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
   }, [open])
 
   return (
@@ -65,7 +70,7 @@ export function QuizWidgetButton() {
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
               className="fixed bottom-0 left-0 right-0 z-50 bg-ivory rounded-t-2xl overflow-y-auto"
-              style={{ maxHeight: '70vh' }}
+              style={{ maxHeight: '70dvh' }}
             >
               <div className="flex items-center justify-between px-6 py-4 border-b border-gold/15">
                 <h2 className="font-display text-xl text-plum">How Well Do You Know Us?</h2>
