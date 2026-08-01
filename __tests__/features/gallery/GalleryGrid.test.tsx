@@ -25,7 +25,7 @@ describe('GalleryGrid', () => {
 
   it('filters to couple-journey only', () => {
     render(<GalleryGrid />)
-    fireEvent.click(screen.getByRole('tab', { name: 'Couple Journey' }))
+    fireEvent.click(screen.getByRole('tab', { name: "Couple's Journey" }))
     expect(screen.getByAltText('Photo 1')).toBeInTheDocument()
     expect(screen.queryByAltText('Photo 2')).not.toBeInTheDocument()
   })
