@@ -180,7 +180,7 @@ export const NAV_LINKS = [
   { label: 'Travel',       href: '/travel',       gated: true  },
   { label: 'RSVP',         href: '/rsvp',         gated: false },
   { label: 'Gallery',      href: '/gallery',      gated: false },
-  { label: 'Guestbook',    href: '/guestbook',    gated: false },
+  { label: 'Ode to the Couple', href: '/guestbook', gated: false },
   { label: 'Registry',     href: '/registry',     gated: false },
 ] as const
 
