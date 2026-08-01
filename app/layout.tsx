@@ -4,7 +4,8 @@ import './globals.css'
 import { Nav }             from '@/components/layout/Nav'
 import { Footer }          from '@/components/layout/Footer'
 import { LenisProvider }   from '@/components/layout/LenisProvider'
-import { AudioToggle }     from '@/components/ui/AudioToggle'
+import { AudioToggle }      from '@/components/ui/AudioToggle'
+import { QuizWidgetButton } from '@/features/quiz-widget/QuizWidgetButton'
 import { AdireBackground } from '@/components/ui/AdireBackground'
 import { COUPLE }          from '@/config/content'
 
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
         </LenisProvider>
         <AudioToggle />
+        <QuizWidgetButton />
       </body>
     </html>
   )
