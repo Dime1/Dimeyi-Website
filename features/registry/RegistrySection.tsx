@@ -21,8 +21,10 @@ export function RegistrySection() {
     <div className="flex gap-8 justify-center flex-wrap py-4">
 
       {/* Card 1 — Give to the Couple */}
-      <div
-        className="w-64 h-80 cursor-pointer select-none"
+      <button
+        type="button"
+        aria-label="Flip card to see account details"
+        className="w-64 h-80 cursor-pointer select-none text-left"
         style={{ perspective: '900px' }}
         onClick={() => setCard1Flipped(f => !f)}
       >
@@ -75,7 +77,7 @@ export function RegistrySection() {
             <div
               className="flex w-full rounded-lg overflow-hidden mb-3"
               style={{ border: '1.5px solid #d8ccc4' }}
-              onClick={e => e.stopPropagation()}
+              onClick={e => { e.preventDefault(); e.stopPropagation() }}
             >
               <button
                 aria-pressed={account === 'ng'}
@@ -115,11 +117,13 @@ export function RegistrySection() {
             )}
           </div>
         </div>
-      </div>
+      </button>
 
       {/* Card 2 — Gift List */}
-      <div
-        className="w-64 h-80 cursor-pointer select-none"
+      <button
+        type="button"
+        aria-label="Flip card to see gift list"
+        className="w-64 h-80 cursor-pointer select-none text-left"
         style={{ perspective: '900px' }}
         onClick={() => setCard2Flipped(f => !f)}
       >
@@ -177,7 +181,7 @@ export function RegistrySection() {
             </p>
             <a
               href="#"
-              onClick={e => e.stopPropagation()}
+              onClick={e => { e.preventDefault(); e.stopPropagation() }}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center w-full py-2 rounded-full bg-plum text-ivory font-sans text-[10px] font-semibold tracking-widest uppercase mb-2 hover:bg-plum/90 transition-colors"
@@ -186,7 +190,7 @@ export function RegistrySection() {
             </a>
             <a
               href="#"
-              onClick={e => e.stopPropagation()}
+              onClick={e => { e.preventDefault(); e.stopPropagation() }}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center w-full py-2 rounded-full text-ivory font-sans text-[10px] font-semibold tracking-widest uppercase hover:opacity-80 transition-opacity"
@@ -196,7 +200,7 @@ export function RegistrySection() {
             </a>
           </div>
         </div>
-      </div>
+      </button>
 
     </div>
   )
