@@ -33,7 +33,7 @@ export function MilestoneCard({ milestone, index }: MilestoneCardProps) {
       {/* Card content */}
       <div className="max-w-2xl">
         {/* Chapter label */}
-        <p className="font-sans text-[10px] tracking-[0.22em] uppercase text-gold/45 mb-1">
+        <p className="font-sans text-xs tracking-[0.22em] uppercase text-gold/45 mb-1">
           {milestone.chapter}
         </p>
 
@@ -43,7 +43,7 @@ export function MilestoneCard({ milestone, index }: MilestoneCardProps) {
         </h2>
 
         {/* Date */}
-        <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-plum/30 mb-5">
+        <p className="font-sans text-xs tracking-[0.18em] uppercase text-plum/30 mb-5">
           {milestone.date}
         </p>
 
@@ -60,7 +60,7 @@ export function MilestoneCard({ milestone, index }: MilestoneCardProps) {
           </div>
         ) : (
           <div className="aspect-[4/3] w-full max-w-sm bg-plum/10 rounded-sm border border-gold/10 mb-5 flex items-center justify-center">
-            <span className="font-sans text-[9px] tracking-[0.18em] uppercase text-gold/15">
+            <span className="font-sans text-xs tracking-[0.18em] uppercase text-gold/15">
               Photo coming soon
             </span>
           </div>

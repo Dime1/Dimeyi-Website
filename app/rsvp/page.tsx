@@ -10,7 +10,7 @@ export default function RSVPPage() {
           <h1 className="font-display text-4xl md:text-5xl text-plum mb-3">
             RSVP
           </h1>
-          <p className="font-sans text-[11px] tracking-[0.18em] uppercase text-plum/30">
+          <p className="font-sans text-xs tracking-[0.18em] uppercase text-plum/30">
             February 18, 2027 · Feyisogo &amp; Dimeji
           </p>
         </div>

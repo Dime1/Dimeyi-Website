@@ -6,8 +6,8 @@ type Account = 'ng' | 'intl'
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="text-center">
-      <p className="font-sans text-[9px] uppercase tracking-[0.12em] text-plum/50 mt-2">{label}</p>
-      <p className="font-sans text-[12px] font-semibold text-plum">{value}</p>
+      <p className="font-sans text-xs uppercase tracking-[0.12em] text-plum/50 mt-2">{label}</p>
+      <p className="font-sans text-xs font-semibold text-plum">{value}</p>
     </div>
   )
 }
@@ -24,7 +24,7 @@ export function RegistrySection() {
       <button
         type="button"
         aria-label="Flip card to see account details"
-        className="w-64 h-80 cursor-pointer select-none text-left"
+        className="w-full max-w-[256px] h-80 cursor-pointer select-none text-left"
         style={{ perspective: '900px' }}
         onClick={() => setCard1Flipped(f => !f)}
       >
@@ -51,10 +51,10 @@ export function RegistrySection() {
               <circle cx="45" cy="12" r="1"   fill="white" opacity="0.5"/>
               <circle cx="48" cy="30" r="1.5" fill="white" opacity="0.4"/>
             </svg>
-            <p className="font-sans text-[11px] tracking-[0.16em] uppercase text-white font-bold mb-2">
+            <p className="font-sans text-xs tracking-[0.16em] uppercase text-white font-bold mb-2">
               Give to the Couple
             </p>
-            <p className="font-sans text-[10px] text-white/70 tracking-widest">
+            <p className="font-sans text-xs text-white/70 tracking-widest">
               Tap to see account details
             </p>
           </div>
@@ -69,7 +69,7 @@ export function RegistrySection() {
               border:             '1.5px solid #e8ddd5',
             }}
           >
-            <p className="font-sans text-[9px] font-bold tracking-[0.14em] uppercase text-plum mb-3">
+            <p className="font-sans text-xs font-bold tracking-[0.14em] uppercase text-plum mb-3">
               Account Details
             </p>
 
@@ -81,7 +81,7 @@ export function RegistrySection() {
             >
               <button
                 aria-pressed={account === 'ng'}
-                className={`flex-1 py-1.5 font-sans text-[9px] font-bold tracking-widest uppercase transition-colors ${
+                className={`flex-1 py-1.5 font-sans text-xs font-bold tracking-widest uppercase transition-colors ${
                   account === 'ng' ? 'bg-plum text-ivory' : 'bg-white text-plum/50'
                 }`}
                 onClick={e => { e.stopPropagation(); setAccount('ng') }}
@@ -90,7 +90,7 @@ export function RegistrySection() {
               </button>
               <button
                 aria-pressed={account === 'intl'}
-                className={`flex-1 py-1.5 font-sans text-[9px] font-bold tracking-widest uppercase transition-colors border-l ${
+                className={`flex-1 py-1.5 font-sans text-xs font-bold tracking-widest uppercase transition-colors border-l ${
                   account === 'intl' ? 'bg-plum text-ivory' : 'bg-white text-plum/50'
                 }`}
                 style={{ borderLeftColor: '#d8ccc4' }}
@@ -123,7 +123,7 @@ export function RegistrySection() {
       <button
         type="button"
         aria-label="Flip card to see gift list"
-        className="w-64 h-80 cursor-pointer select-none text-left"
+        className="w-full max-w-[256px] h-80 cursor-pointer select-none text-left"
         style={{ perspective: '900px' }}
         onClick={() => setCard2Flipped(f => !f)}
       >
@@ -152,10 +152,10 @@ export function RegistrySection() {
               <path d="M30 20 C32 14 40 12 40 18 C40 22 32 22 30 20Z" fill="rgba(255,255,255,0.7)" stroke="white" strokeWidth="1"/>
               <circle cx="30" cy="20" r="3" fill="white"/>
             </svg>
-            <p className="font-sans text-[11px] tracking-[0.16em] uppercase text-white font-bold mb-2">
+            <p className="font-sans text-xs tracking-[0.16em] uppercase text-white font-bold mb-2">
               Gift List
             </p>
-            <p className="font-sans text-[10px] text-white/70 tracking-widest">
+            <p className="font-sans text-xs text-white/70 tracking-widest">
               Tap to explore our wishlist
             </p>
           </div>
@@ -176,7 +176,7 @@ export function RegistrySection() {
               <path d="M22 15 C24.5 17 24.5 27 22 29" stroke="#fffaf6" strokeWidth="3"/>
               <path d="M22 15 C19.5 17 19.5 27 22 29" stroke="#fffaf6" strokeWidth="3"/>
             </svg>
-            <p className="font-sans text-[9px] uppercase tracking-[0.12em] text-plum/50 mb-4">
+            <p className="font-sans text-xs uppercase tracking-[0.12em] text-plum/50 mb-4">
               Browse our wishlist
             </p>
             <a

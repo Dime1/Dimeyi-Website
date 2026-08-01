@@ -9,7 +9,7 @@ export function Footer() {
         <p className="font-script italic text-gold/70 text-xl leading-relaxed">
           {VERSES.footer.text}
         </p>
-        <p className="font-sans font-medium text-[10px] tracking-[0.18em] uppercase text-gold/40">
+        <p className="font-sans font-medium text-xs tracking-[0.18em] uppercase text-gold/40">
           {VERSES.footer.ref}
         </p>
 
@@ -17,7 +17,7 @@ export function Footer() {
           <p className="font-display text-ivory/80 text-2xl tracking-wide">
             {COUPLE.fullNames}
           </p>
-          <p className="font-sans text-[11px] tracking-[0.16em] uppercase text-ivory/30">
+          <p className="font-sans text-xs tracking-[0.16em] uppercase text-ivory/30">
             {WEDDING.dateLabel}
           </p>
           <p className="font-sans text-xs text-ivory/20 pt-2">

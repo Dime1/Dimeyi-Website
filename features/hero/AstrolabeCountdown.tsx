@@ -65,13 +65,14 @@ export function AstrolabeCountdown() {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <svg
-        width={SIZE}
-        height={SIZE}
-        viewBox={`0 0 ${SIZE} ${SIZE}`}
-        aria-label={ariaLabel}
-        role="img"
-      >
+      <div className="w-full max-w-[220px]">
+        <svg
+          width="100%"
+          height="100%"
+          viewBox={`0 0 ${SIZE} ${SIZE}`}
+          aria-label={ariaLabel}
+          role="img"
+        >
         {/* Outer ring */}
         <circle cx={CX} cy={CY} r={R}      fill="none" stroke="#C9A24B" strokeWidth="0.5" opacity="0.35"/>
         <circle cx={CX} cy={CY} r={R - 14} fill="none" stroke="#C9A24B" strokeWidth="0.25" opacity="0.15"/>
@@ -128,13 +129,14 @@ export function AstrolabeCountdown() {
         >
           DAYS
         </text>
-      </svg>
+        </svg>
+      </div>
 
       {/* HH:MM:SS */}
       <p
         role="timer"
         aria-label={time ? `${time.hours} hours ${time.minutes} minutes ${time.seconds} seconds` : 'loading'}
-        className="font-sans text-[11px] tracking-[0.22em] text-gold/35 tabular-nums"
+        className="font-sans text-xs tracking-[0.22em] text-gold/35 tabular-nums"
       >
         {time
           ? `${String(time.hours).padStart(2,'0')} : ${String(time.minutes).padStart(2,'0')} : ${String(time.seconds).padStart(2,'0')}`

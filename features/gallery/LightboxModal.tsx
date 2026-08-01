@@ -32,7 +32,7 @@ export function LightboxModal({ images, initialIndex, onClose }: LightboxModalPr
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[90vh] px-12"
+        className="relative w-full max-w-4xl max-h-[90vh] px-4 sm:px-12"
         onClick={e => e.stopPropagation()}
       >
         <div className="relative aspect-[4/3]">
@@ -48,7 +48,7 @@ export function LightboxModal({ images, initialIndex, onClose }: LightboxModalPr
         <button
           onClick={onClose}
           aria-label="Close lightbox"
-          className="absolute top-0 right-14 text-ivory/60 hover:text-ivory text-3xl leading-none"
+          className="absolute top-0 right-2 sm:right-14 text-ivory/60 hover:text-ivory text-3xl leading-none"
         >
           ×
         </button>
