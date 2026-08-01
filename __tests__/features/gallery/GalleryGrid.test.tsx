@@ -8,24 +8,24 @@ vi.mock('next/image', () => ({
 
 vi.mock('@/config/content', () => ({
   GALLERY_IMAGES: [
-    { id: 'g1', src: '/img/p1.jpg', alt: 'Photo 1', category: 'pre-wedding' },
-    { id: 'g2', src: '/img/p2.jpg', alt: 'Photo 2', category: 'traditional' },
-    { id: 'g3', src: '/img/p3.jpg', alt: 'Photo 3', category: 'family'      },
+    { id: 'g1', src: '/img/p1.jpg', alt: 'Photo 1', category: 'couple-journey' },
+    { id: 'g2', src: '/img/p2.jpg', alt: 'Photo 2', category: 'proposal'       },
+    { id: 'g3', src: '/img/p3.jpg', alt: 'Photo 3', category: 'couple-journey' },
   ],
 }))
 
 describe('GalleryGrid', () => {
   it('renders all images when filter is All', () => {
     render(<GalleryGrid />)
-    expect(screen.getAllByRole('tab')).toHaveLength(4)
+    expect(screen.getAllByRole('tab')).toHaveLength(3)
     expect(screen.getByAltText('Photo 1')).toBeInTheDocument()
     expect(screen.getByAltText('Photo 2')).toBeInTheDocument()
     expect(screen.getByAltText('Photo 3')).toBeInTheDocument()
   })
 
-  it('filters to pre-wedding only', () => {
+  it('filters to couple-journey only', () => {
     render(<GalleryGrid />)
-    fireEvent.click(screen.getByRole('tab', { name: 'Pre-wedding' }))
+    fireEvent.click(screen.getByRole('tab', { name: 'Couple Journey' }))
     expect(screen.getByAltText('Photo 1')).toBeInTheDocument()
     expect(screen.queryByAltText('Photo 2')).not.toBeInTheDocument()
   })

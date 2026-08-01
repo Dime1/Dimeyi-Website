@@ -3,21 +3,28 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { GalleryFilterTabs } from '@/features/gallery/GalleryFilterTabs'
 
 describe('GalleryFilterTabs', () => {
-  it('renders all four tabs', () => {
+  it('renders all three tabs', () => {
     render(<GalleryFilterTabs active="all" onChange={vi.fn()} />)
-    expect(screen.getAllByRole('tab')).toHaveLength(4)
+    expect(screen.getAllByRole('tab')).toHaveLength(3)
   })
 
   it('marks the active tab as selected', () => {
-    render(<GalleryFilterTabs active="traditional" onChange={vi.fn()} />)
-    expect(screen.getByRole('tab', { name: 'Traditional' })).toHaveAttribute('aria-selected', 'true')
+    render(<GalleryFilterTabs active="couple-journey" onChange={vi.fn()} />)
+    expect(screen.getByRole('tab', { name: 'Couple Journey' })).toHaveAttribute('aria-selected', 'true')
     expect(screen.getByRole('tab', { name: 'All' })).toHaveAttribute('aria-selected', 'false')
   })
 
-  it('calls onChange with the correct category when clicked', () => {
+  it('calls onChange with couple-journey when that tab is clicked', () => {
     const onChange = vi.fn()
     render(<GalleryFilterTabs active="all" onChange={onChange} />)
-    fireEvent.click(screen.getByRole('tab', { name: 'Pre-wedding' }))
-    expect(onChange).toHaveBeenCalledWith('pre-wedding')
+    fireEvent.click(screen.getByRole('tab', { name: 'Couple Journey' }))
+    expect(onChange).toHaveBeenCalledWith('couple-journey')
+  })
+
+  it('calls onChange with proposal when that tab is clicked', () => {
+    const onChange = vi.fn()
+    render(<GalleryFilterTabs active="all" onChange={onChange} />)
+    fireEvent.click(screen.getByRole('tab', { name: 'Proposal Photos' }))
+    expect(onChange).toHaveBeenCalledWith('proposal')
   })
 })

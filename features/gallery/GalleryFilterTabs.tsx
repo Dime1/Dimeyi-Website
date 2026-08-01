@@ -2,10 +2,9 @@
 import type { GalleryCategory } from '@/config/content'
 
 const TABS: { label: string; value: GalleryCategory }[] = [
-  { label: 'All',         value: 'all'         },
-  { label: 'Traditional', value: 'traditional' },
-  { label: 'Pre-wedding', value: 'pre-wedding' },
-  { label: 'Family',      value: 'family'      },
+  { label: 'All',             value: 'all'            },
+  { label: 'Couple Journey',  value: 'couple-journey' },
+  { label: 'Proposal Photos', value: 'proposal'       },
 ]
 
 interface GalleryFilterTabsProps {
