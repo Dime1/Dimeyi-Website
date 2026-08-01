@@ -7,8 +7,8 @@ vi.mock('next/image', () => ({
 }))
 
 const IMAGES = [
-  { id: 'g1', src: '/img/1.jpg', alt: 'Photo 1', category: 'pre-wedding' as const },
-  { id: 'g2', src: '/img/2.jpg', alt: 'Photo 2', category: 'traditional' as const },
+  { id: 'g1', src: '/img/1.jpg', alt: 'Photo 1', category: 'couple-journey' as const },
+  { id: 'g2', src: '/img/2.jpg', alt: 'Photo 2', category: 'proposal' as const },
 ] as const
 
 describe('LightboxModal', () => {
