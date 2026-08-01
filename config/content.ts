@@ -175,13 +175,12 @@ export const AUDIO = {
 } as const
 
 export const NAV_LINKS = [
-  { label: 'Our Story',    href: '/our-story',    gated: false },
-  { label: 'Schedule',     href: '/schedule',     gated: true  },
-  { label: 'Travel',       href: '/travel',       gated: true  },
-  { label: 'RSVP',         href: '/rsvp',         gated: false },
-  { label: 'Gallery',      href: '/gallery',      gated: false },
+  { label: 'Our Story',    href: '/our-story',  gated: false },
+  { label: 'D-Day',        href: '/d-day',      gated: true  },
+  { label: 'RSVP',         href: '/rsvp',       gated: false },
+  { label: 'Gallery',      href: '/gallery',    gated: false },
   { label: 'Ode to the Couple', href: '/guestbook', gated: false },
-  { label: 'Registry',     href: '/registry',     gated: false },
+  { label: 'Registry',     href: '/registry',   gated: false },
 ] as const
 
 export const TRAVEL_INFO = {
