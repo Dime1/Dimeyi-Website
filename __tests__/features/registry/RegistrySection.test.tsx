@@ -1,35 +1,45 @@
-import { describe, it, expect, vi } from 'vitest'
-import { render, screen }           from '@testing-library/react'
-import { RegistrySection }          from '@/features/registry/RegistrySection'
-
-vi.mock('@/config/content', () => ({
-  REGISTRY_LINKS: [
-    { id: 'r1', label: 'Amazon',   url: 'https://amazon.com', note: 'Kitchen items'     },
-    { id: 'r2', label: 'Wishlist', url: '[REGISTRY_2_URL]',   note: '[REGISTRY_2_NOTE]' },
-  ],
-}))
+import { describe, it, expect } from 'vitest'
+import { render, screen, fireEvent } from '@testing-library/react'
+import { RegistrySection } from '@/features/registry/RegistrySection'
 
 describe('RegistrySection', () => {
-  it('renders all registry item labels', () => {
+  it('renders Give to the Couple card front', () => {
     render(<RegistrySection />)
-    expect(screen.getByText('Amazon')).toBeInTheDocument()
-    expect(screen.getByText('Wishlist')).toBeInTheDocument()
+    expect(screen.getByText(/give to the couple/i)).toBeInTheDocument()
   })
 
-  it('renders a real link for non-placeholder URLs', () => {
+  it('renders Gift List card front', () => {
     render(<RegistrySection />)
-    const link = screen.getByRole('link', { name: /view registry/i })
-    expect(link).toHaveAttribute('href', 'https://amazon.com')
-    expect(link).toHaveAttribute('target', '_blank')
+    expect(screen.getByText(/gift list/i)).toBeInTheDocument()
   })
 
-  it('shows "Link coming soon" for placeholder URLs', () => {
+  it('renders both account tabs on card 1', () => {
     render(<RegistrySection />)
-    expect(screen.getByText('Link coming soon')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /nigerian/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /intl/i })).toBeInTheDocument()
   })
 
-  it('renders item notes for non-placeholder notes', () => {
+  it('shows Nigerian account fields by default', () => {
     render(<RegistrySection />)
-    expect(screen.getByText('Kitchen items')).toBeInTheDocument()
+    expect(screen.getByText('Account No.')).toBeInTheDocument()
+    expect(screen.queryByText('IBAN')).not.toBeInTheDocument()
+  })
+
+  it('switches to International fields when Intl tab is clicked', () => {
+    render(<RegistrySection />)
+    fireEvent.click(screen.getByRole('button', { name: /intl/i }))
+    expect(screen.getByText('IBAN')).toBeInTheDocument()
+    expect(screen.queryByText('Account No.')).not.toBeInTheDocument()
+  })
+
+  it('renders Amazon List and Giftwhale links', () => {
+    render(<RegistrySection />)
+    expect(screen.getByRole('link', { name: /amazon list/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /giftwhale/i })).toBeInTheDocument()
+  })
+
+  it('Amazon link opens in new tab', () => {
+    render(<RegistrySection />)
+    expect(screen.getByRole('link', { name: /amazon list/i })).toHaveAttribute('target', '_blank')
   })
 })
