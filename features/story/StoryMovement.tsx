@@ -17,18 +17,18 @@ const ROMAN = ['I', 'II', 'III']
 
 const PALETTE = {
   friendship: {
-    fragment:    'text-rose/75',
-    unfold:      'text-rose/85 hover:text-rose',
+    fragment:    'text-rose',
+    unfold:      'text-rose hover:text-rose/80',
     placeholder: 'from-blush via-rose/20 to-blush/60',
   },
   dating: {
-    fragment:    'text-lilac/80',
-    unfold:      'text-lilac/85 hover:text-lilac',
+    fragment:    'text-lilac',
+    unfold:      'text-lilac hover:text-lilac/80',
     placeholder: 'from-indigo/20 via-lilac/15 to-indigo/10',
   },
   proposal: {
-    fragment:    'text-gold/80',
-    unfold:      'text-gold/85 hover:text-gold',
+    fragment:    'text-gold',
+    unfold:      'text-gold hover:text-gold/80',
     placeholder: 'from-gold/15 via-blush/20 to-gold/10',
   },
 } as const
@@ -133,7 +133,7 @@ export function StoryMovement({ movement, index, verseText, verseRef }: StoryMov
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.6, delay: 0 }}
-        className="font-sans text-sm font-medium tracking-[0.22em] uppercase text-plum/75 mb-6"
+        className="font-sans text-sm font-medium tracking-[0.22em] uppercase text-plum/90 mb-6"
       >
         {movement.period}
       </motion.p>

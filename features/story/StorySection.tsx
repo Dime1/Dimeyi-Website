@@ -25,7 +25,7 @@ export function StorySection() {
           <h1 className="font-display text-5xl md:text-7xl text-plum mb-4">
             Our Story
           </h1>
-          <p className="font-sans text-sm tracking-[0.26em] uppercase text-plum/75">
+          <p className="font-sans text-sm tracking-[0.26em] uppercase text-plum/90">
             Written in the stars
           </p>
         </header>
