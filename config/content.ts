@@ -123,7 +123,7 @@ export const QUIZ_QUESTIONS = [
     id: 'q4',
     question: 'In what year did Feyisogo move to Germany?',
     options: ['2024', '2025', '2026', '2027'],
-    answer: 1,
+    answer: 2,
   },
   {
     id: 'q5',
