@@ -1,7 +1,7 @@
 // app/api/rsvp/route.ts
 import { NextResponse } from 'next/server'
 import { rsvpSchema }   from '@/lib/rsvp-schema'
-import { getSupabase }  from '@/lib/supabase'
+import { getSupabaseAdmin } from '@/lib/supabase'
 
 export async function POST(req: Request) {
   const body   = await req.json()
@@ -11,8 +11,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 422 })
   }
 
-  const supabase = getSupabase()
-  const { error } = await supabase.from('rsvp').insert(parsed.data)
+  const supabase = getSupabaseAdmin()
+  const { error } = await supabase.from('rsvp').upsert(parsed.data, { onConflict: 'email' })
   if (error) {
     console.error('[RSVP] Supabase insert error:', error)
     return NextResponse.json({ error: 'Failed to save RSVP', detail: error.message }, { status: 500 })

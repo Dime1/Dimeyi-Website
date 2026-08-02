@@ -171,8 +171,8 @@ export const AUDIO = {
 
 export const NAV_LINKS = [
   { label: 'Our Story',    href: '/our-story',  gated: false },
-  { label: 'D-Day',        href: '/d-day',      gated: true  },
   { label: 'RSVP',         href: '/rsvp',       gated: false },
+  { label: 'D-Day',        href: '/d-day',      gated: true  },
   { label: 'Gallery',      href: '/gallery',    gated: false },
   { label: 'Ode to the Couple', href: '/guestbook', gated: false },
   { label: 'Registry',     href: '/registry',   gated: false },
