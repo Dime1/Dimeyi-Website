@@ -31,6 +31,17 @@ export async function POST(req: Request) {
   }
 
   const supabase = getSupabase()
+
+  const { data: existing } = await supabase
+    .from('quiz_scores')
+    .select('id')
+    .ilike('player_name', parsed.data.player_name)
+    .maybeSingle()
+
+  if (existing) {
+    return NextResponse.json({ error: 'name_taken' }, { status: 409 })
+  }
+
   const { data, error } = await supabase
     .from('quiz_scores')
     .insert(parsed.data)

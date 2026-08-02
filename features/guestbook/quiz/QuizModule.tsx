@@ -1,11 +1,13 @@
 'use client'
-import { useState }                          from 'react'
-import { AvatarPicker, type Avatar }         from './AvatarPicker'
-import { QuizQuestion }                      from './QuizQuestion'
-import { Leaderboard }                       from './Leaderboard'
-import { QUIZ_QUESTIONS }                    from '@/config/content'
+import { useState, useEffect }              from 'react'
+import { AvatarPicker, type Avatar }        from './AvatarPicker'
+import { QuizQuestion }                     from './QuizQuestion'
+import { Leaderboard }                      from './Leaderboard'
+import { QUIZ_QUESTIONS }                   from '@/config/content'
 
-type Phase = 'setup' | 'playing' | 'done'
+type Phase = 'setup' | 'playing' | 'done' | 'blocked'
+
+const LS_KEY = 'quiz_played'
 
 export function QuizModule() {
   const [phase,        setPhase]        = useState<Phase>('setup')
@@ -20,6 +22,10 @@ export function QuizModule() {
 
   const questions = [...QUIZ_QUESTIONS]
 
+  useEffect(() => {
+    if (localStorage.getItem(LS_KEY)) setPhase('blocked')
+  }, [])
+
   async function handleAnswer(correct: boolean, timeTakenMs: number) {
     const newCorrect = correctCount + (correct ? 1 : 0)
     const newTime    = totalTimeMs + timeTakenMs
@@ -27,8 +33,9 @@ export function QuizModule() {
     if (questionIdx + 1 >= questions.length) {
       setFinalScore({ correct: newCorrect, total: questions.length })
       setSubmitting(true)
-      await submitScore(newCorrect, newTime)
+      const saved = await submitScore(newCorrect, newTime)
       setSubmitting(false)
+      if (saved) localStorage.setItem(LS_KEY, 'true')
       setPhase('done')
     } else {
       setCorrectCount(newCorrect)
@@ -37,17 +44,37 @@ export function QuizModule() {
     }
   }
 
-  async function submitScore(score: number, time_taken_ms: number) {
+  async function submitScore(score: number, time_taken_ms: number): Promise<boolean> {
     try {
       const res = await fetch('/api/quiz', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({ player_name: name, avatar: avatar!, score, time_taken_ms }),
       })
-      if (!res.ok) setSubmitError('Score could not be saved.')
+      if (res.status === 409) {
+        setSubmitError('This name is already on the leaderboard — your score wasn\'t saved. Try using your full name next time.')
+        return false
+      }
+      if (!res.ok) {
+        setSubmitError('Score could not be saved.')
+        return false
+      }
+      return true
     } catch {
       setSubmitError('Score could not be saved.')
+      return false
     }
+  }
+
+  if (phase === 'blocked') {
+    return (
+      <div className="text-center py-8 space-y-4">
+        <p className="font-display text-2xl text-plum">You've already played!</p>
+        <p className="font-sans text-sm font-medium text-plum/75 max-w-xs mx-auto">
+          Each guest gets one go. Tap the Rankings button to see where you stand.
+        </p>
+      </div>
+    )
   }
 
   if (phase === 'setup') {
