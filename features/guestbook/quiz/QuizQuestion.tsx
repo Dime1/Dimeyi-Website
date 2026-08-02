@@ -11,7 +11,7 @@ interface QuizQuestionProps {
   onAnswer:    (correct: boolean, timeTakenMs: number) => void
 }
 
-const QUESTION_TIME_MS = 10_000
+const QUESTION_TIME_MS = 30_000
 
 export function QuizQuestion({ question, questionNum, total, onAnswer }: QuizQuestionProps) {
   const [selected,  setSelected]  = useState<number | null>(null)
