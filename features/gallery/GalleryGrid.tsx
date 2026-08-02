@@ -9,15 +9,24 @@ export function GalleryGrid() {
   const [category,    setCategory]    = useState<GalleryCategory>('all')
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null)
 
-  const filtered = category === 'all'
+  const CATEGORY_ORDER: Record<string, number> = { 'couple-journey': 0, 'proposal': 1 }
+
+  const filtered = (category === 'all'
     ? [...GALLERY_IMAGES]
     : GALLERY_IMAGES.filter(img => img.category === category)
+  ).sort((a, b) => {
+    if (category === 'all') {
+      const catDiff = (CATEGORY_ORDER[a.category] ?? 99) - (CATEGORY_ORDER[b.category] ?? 99)
+      if (catDiff !== 0) return catDiff
+    }
+    return parseInt(a.id.replace('g', '')) - parseInt(b.id.replace('g', ''))
+  })
 
   return (
     <>
       <GalleryFilterTabs active={category} onChange={setCategory} />
 
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filtered.map((img, i) => (
           <button
             key={img.id}
