@@ -12,9 +12,10 @@
   --color-lilac:  #B9A6E0;
 
   /* Typography */
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-script:  "Cormorant Garamond", Georgia, serif;
-  --font-sans:    "Inter", system-ui, sans-serif;
+  --font-display:      "Playfair Display", Georgia, serif;
+  --font-script:       "Cormorant Garamond", Georgia, serif;
+  --font-sans:         "Inter", system-ui, sans-serif;
+  --font-calligraphy:  "Lora", Georgia, serif;
 
   /* Animations */
   --animate-breathe: breathe 6s ease-in-out infinite;

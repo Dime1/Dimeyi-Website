@@ -1,5 +1,5 @@
 import type { Metadata }           from 'next'
-import { Playfair_Display, Cormorant_Garamond, Inter } from 'next/font/google'
+import { Playfair_Display, Cormorant_Garamond, Inter, Lora } from 'next/font/google'
 import './globals.css'
 import { Nav }             from '@/components/layout/Nav'
 import { Footer }          from '@/components/layout/Footer'
@@ -29,6 +29,14 @@ const inter = Inter({
   display:  'swap',
 })
 
+const lora = Lora({
+  subsets:  ['latin'],
+  weight:   ['400', '700'],
+  style:    ['normal', 'italic'],
+  variable: '--font-calligraphy',
+  display:  'swap',
+})
+
 export const metadata: Metadata = {
   title:       `${COUPLE.displayNames} — Wedding`,
   description: `You're invited to celebrate the wedding of ${COUPLE.fullNames} on February 18, 2027.`,
@@ -43,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${cormorant.variable} ${inter.variable}`}
+      className={`${playfair.variable} ${cormorant.variable} ${inter.variable} ${lora.variable}`}
     >
       <body className="bg-ivory text-plum min-h-screen">
         <AdireBackground />

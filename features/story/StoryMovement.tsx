@@ -190,7 +190,7 @@ export function StoryMovement({ movement, index, verseText, verseRef }: StoryMov
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden"
             >
-              <p className="font-display text-base font-bold text-plum/90 leading-relaxed pt-1 text-justify">
+              <p className="font-calligraphy italic font-bold text-base text-plum/90 leading-relaxed pt-1 text-center">
                 {movement.body}
               </p>
               {verseText && verseRef && (
