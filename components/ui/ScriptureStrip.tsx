@@ -13,10 +13,10 @@ export function ScriptureStrip({ text, reference }: ScriptureStripProps) {
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"/>
 
       <div className="relative text-center max-w-2xl mx-auto">
-        <p className="font-script italic text-lg leading-relaxed text-gold/75">
+        <p className="font-script italic text-lg leading-relaxed text-gold/90">
           {text}
         </p>
-        <p className="mt-3 font-sans font-medium text-[10px] tracking-[0.18em] uppercase text-gold/45">
+        <p className="mt-3 font-sans font-medium text-sm tracking-[0.18em] uppercase text-gold/80">
           {reference}
         </p>
       </div>
