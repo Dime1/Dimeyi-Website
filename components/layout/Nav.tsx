@@ -36,9 +36,9 @@ export function Nav() {
   const [open, setOpen] = useState(false)
 
   const linkClass = (href: string) => [
-    'relative text-[11px] font-sans font-medium tracking-[0.16em] uppercase',
+    'relative text-sm font-sans font-medium tracking-[0.16em] uppercase',
     reduced ? '' : 'transition-colors duration-[150ms] ease-[cubic-bezier(0.22,1,0.36,1)]',
-    pathname === href ? 'text-gold' : 'text-ivory/55 hover:text-ivory',
+    pathname === href ? 'text-gold' : 'text-ivory/90 hover:text-ivory',
     'after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-gold after:origin-left',
     reduced ? 'after:scale-x-0' : 'after:transition-transform after:duration-[350ms] after:ease-[cubic-bezier(0.22,1,0.36,1)]',
     pathname === href ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100',
@@ -82,7 +82,7 @@ export function Nav() {
           </ul>
 
           <button
-            className="md:hidden text-ivory/60 hover:text-ivory p-1"
+            className="md:hidden text-ivory/80 hover:text-ivory p-1"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             onClick={() => setOpen(v => !v)}
@@ -122,8 +122,8 @@ export function Nav() {
                       title={locked ? unlockLabel(href) : undefined}
                       aria-current={pathname === href ? 'page' : undefined}
                       className={[
-                        'text-sm font-sans font-medium tracking-[0.14em] uppercase',
-                        pathname === href ? 'text-gold' : 'text-ivory/60 hover:text-ivory',
+                        'text-base font-sans font-medium tracking-[0.14em] uppercase',
+                        pathname === href ? 'text-gold' : 'text-ivory/90 hover:text-ivory',
                         reduced ? '' : 'transition-colors duration-[150ms]',
                       ].join(' ')}
                     >

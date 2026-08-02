@@ -6,10 +6,10 @@ export function Footer() {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/25 to-transparent"/>
 
       <div className="relative max-w-xl mx-auto text-center space-y-4">
-        <p className="font-script italic text-gold/70 text-xl leading-relaxed">
+        <p className="font-script italic text-gold/90 text-xl leading-relaxed">
           {VERSES.footer.text}
         </p>
-        <p className="font-sans font-medium text-xs tracking-[0.18em] uppercase text-gold/40">
+        <p className="font-sans font-medium text-sm tracking-[0.18em] uppercase text-gold/75">
           {VERSES.footer.ref}
         </p>
 
@@ -17,14 +17,14 @@ export function Footer() {
           <p className="font-display text-ivory/80 text-2xl tracking-wide">
             {COUPLE.fullNames}
           </p>
-          <p className="font-sans text-xs tracking-[0.16em] uppercase text-ivory/30">
+          <p className="font-sans text-sm tracking-[0.16em] uppercase text-ivory/75">
             {WEDDING.dateLabel}
           </p>
-          <p className="font-sans text-xs text-ivory/20 pt-2">
+          <p className="font-sans text-sm text-ivory/75 pt-2">
             With love and gratitude — thank you for celebrating with us.
           </p>
           {COUPLE.hashtag !== '[WEDDING_HASHTAG]' && (
-            <p className="font-sans text-xs tracking-widest text-gold/35 pt-1">
+            <p className="font-sans text-sm tracking-widest text-gold/80 pt-1">
               {COUPLE.hashtag}
             </p>
           )}
