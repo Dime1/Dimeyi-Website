@@ -31,7 +31,7 @@ export function HeroSection() {
     target:  heroRef,
     offset: ['start start', 'end start'],
   })
-  const verseOpacity = useTransform(scrollYProgress, [0, 0.7], [0.3, 0])
+  const verseOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
   return (
     <section
@@ -61,7 +61,7 @@ export function HeroSection() {
         {/* Verse watermark */}
         <motion.p
           style={{ opacity: reduced ? 0.2 : verseOpacity }}
-          className="font-script italic text-gold/80 text-base md:text-lg max-w-md leading-relaxed"
+          className="font-script italic text-gold text-base md:text-lg max-w-md leading-relaxed"
           aria-label={`${VERSES.hero.text} — ${VERSES.hero.ref}`}
         >
           {VERSES.hero.text}
