@@ -133,13 +133,13 @@ export function StoryMovement({ movement, index, verseText, verseRef }: StoryMov
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.6, delay: 0 }}
-        className="font-sans text-sm font-medium tracking-[0.22em] uppercase text-plum/90 mb-6"
+        className="font-sans text-sm font-medium tracking-[0.22em] uppercase text-plum/90 mb-3"
       >
         {movement.period}
       </motion.p>
 
       {/* Fragment sequence — each reveals in turn */}
-      <div className="space-y-3 mb-6">
+      <div className="space-y-2 mb-4">
         {movement.fragments.map((fragment, fi) => (
           <motion.p
             key={fi}
@@ -160,7 +160,7 @@ export function StoryMovement({ movement, index, verseText, verseRef }: StoryMov
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-40px' }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-        className={`font-display text-plum leading-tight mb-8 ${isProposal ? 'text-4xl md:text-6xl' : 'text-3xl md:text-4xl'}`}
+        className={`font-display text-plum leading-tight mb-5 ${isProposal ? 'text-4xl md:text-6xl' : 'text-3xl md:text-4xl'}`}
       >
         {movement.title}
       </motion.h2>
@@ -218,7 +218,7 @@ export function StoryMovement({ movement, index, verseText, verseRef }: StoryMov
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-      className={`relative flex flex-col md:flex-row items-start md:items-center gap-10 md:gap-14 ${isProposal ? 'py-16 md:py-24' : 'py-12 md:py-16'}`}
+      className={`relative flex flex-col md:flex-row items-start md:items-center gap-10 md:gap-14 ${isProposal ? 'py-8 md:py-12' : 'py-6 md:py-8'}`}
     >
       {/* Faint Roman numeral — depth element, not a label */}
       <div
