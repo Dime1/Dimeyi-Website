@@ -52,7 +52,7 @@ export function StoryMovement({ movement, index, verseText, verseRef }: StoryMov
   const palette    = PALETTE[movement.variant]
 
   const hasHero = !movement.heroPhoto.startsWith('[')
-  const auxReal = movement.auxPhotos.filter(p => !p.startsWith('['))
+  const auxReal = (movement.auxPhotos as readonly string[]).filter(p => !p.startsWith('['))
 
   /* ── hero image ────────────────────────────────────── */
   const heroBlock = (
