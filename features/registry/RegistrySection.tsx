@@ -184,8 +184,7 @@ export function RegistrySection() {
               Browse our wishlist
             </p>
             <a
-              href="#"
-              onClick={e => { e.preventDefault(); e.stopPropagation() }}
+              href="https://www.amazon.de/wedding/share/FeyiandDims"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center w-full py-2 rounded-full bg-plum text-ivory font-sans text-xs font-semibold tracking-widest uppercase mb-2 hover:bg-plum/90 transition-colors"
