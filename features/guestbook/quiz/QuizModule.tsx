@@ -54,7 +54,7 @@ export function QuizModule() {
     return (
       <div className="max-w-md mx-auto space-y-8">
         <div>
-          <label className="font-sans text-xs tracking-[0.18em] uppercase text-plum/50 block mb-2 text-center">
+          <label className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/80 block mb-2 text-center">
             Your Name
           </label>
           <input
@@ -65,7 +65,7 @@ export function QuizModule() {
           />
         </div>
         <div>
-          <p className="font-sans text-xs tracking-[0.18em] uppercase text-plum/50 text-center mb-4">
+          <p className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/80 text-center mb-4">
             Pick Your Avatar
           </p>
           <AvatarPicker selected={avatar} onSelect={setAvatar} />
@@ -74,7 +74,7 @@ export function QuizModule() {
           type="button"
           disabled={!name.trim() || !avatar}
           onClick={() => setPhase('playing')}
-          className="w-full border border-gold/30 text-plum font-sans text-xs tracking-[0.18em] uppercase py-3 hover:bg-plum hover:text-ivory transition-colors duration-300 disabled:opacity-40"
+          className="w-full border border-gold/30 text-plum font-sans text-sm font-medium tracking-[0.18em] uppercase py-3 hover:bg-plum hover:text-ivory transition-colors duration-300 disabled:opacity-40"
         >
           Begin the Quiz
         </button>
@@ -96,7 +96,7 @@ export function QuizModule() {
 
   if (submitting) {
     return (
-      <p className="font-sans text-xs text-plum/30 text-center tracking-widest uppercase py-16">
+      <p className="font-sans text-sm font-medium text-plum/75 text-center tracking-widest uppercase py-16">
         Saving your score…
       </p>
     )
@@ -105,10 +105,10 @@ export function QuizModule() {
   return (
     <div className="space-y-16">
       <div className="text-center">
-        <p className="font-script italic text-gold/70 text-3xl mb-2">
+        <p className="font-script italic text-gold/90 text-3xl mb-2">
           {finalScore!.correct} / {finalScore!.total}
         </p>
-        <p className="font-sans text-xs text-plum/40 tracking-widest uppercase">
+        <p className="font-sans text-sm font-medium text-plum/75 tracking-widest uppercase">
           {finalScore!.correct === finalScore!.total ? 'Perfect score!' : 'Well played!'}
         </p>
         {submitError && (

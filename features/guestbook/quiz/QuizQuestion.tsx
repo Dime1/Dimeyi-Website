@@ -44,7 +44,7 @@ export function QuizQuestion({ question, questionNum, total, onAnswer }: QuizQue
 
   return (
     <div className="max-w-md mx-auto">
-      <p className="font-sans text-xs tracking-[0.18em] uppercase text-plum/30 text-center mb-6">
+      <p className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/75 text-center mb-6">
         Question {questionNum} of {total}
       </p>
 

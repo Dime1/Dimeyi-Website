@@ -29,13 +29,13 @@ export function Leaderboard() {
   }, [])
 
   if (loading) return (
-    <p className="font-sans text-xs text-plum/30 text-center tracking-widest uppercase">
+    <p className="font-sans text-sm font-medium text-plum/75 text-center tracking-widest uppercase">
       Loading scores…
     </p>
   )
 
   if (scores.length === 0) return (
-    <p className="font-sans text-xs text-plum/30 text-center tracking-widest uppercase">
+    <p className="font-sans text-sm font-medium text-plum/75 text-center tracking-widest uppercase">
       No scores yet — be the first!
     </p>
   )
@@ -51,7 +51,7 @@ export function Leaderboard() {
             key={entry.id}
             className="flex items-center gap-4 border border-gold/15 rounded-sm px-5 py-3 bg-ivory/60"
           >
-            <span className="font-script italic text-gold/60 text-sm w-8 shrink-0 text-center">
+            <span className="font-script italic text-gold/85 text-sm w-8 shrink-0 text-center">
               {RANK_LABELS[i]}
             </span>
             <span className="text-xl">{entry.avatar}</span>
