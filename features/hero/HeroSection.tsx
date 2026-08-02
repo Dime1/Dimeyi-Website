@@ -61,7 +61,7 @@ export function HeroSection() {
           aria-label={`${VERSES.hero.text} — ${VERSES.hero.ref}`}
         >
           {VERSES.hero.text}
-          <span className="block mt-1 font-sans font-medium text-[9px] tracking-[0.18em] uppercase text-gold/40 not-italic">
+          <span className="block mt-1 font-sans font-medium text-sm tracking-[0.18em] uppercase text-gold/75 not-italic">
             {VERSES.hero.ref}
           </span>
         </motion.p>
@@ -92,7 +92,7 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={reduced ? { duration: 0 } : { delay: 1.6, duration: 0.8 }}
-            className="font-sans text-[11px] md:text-xs tracking-[0.22em] text-ivory/30 uppercase mt-3"
+            className="font-sans text-sm tracking-[0.22em] text-ivory/75 uppercase mt-3"
           >
             {WEDDING.dateLabel}
           </motion.p>

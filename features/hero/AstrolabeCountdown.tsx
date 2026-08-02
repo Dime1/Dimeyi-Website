@@ -123,9 +123,9 @@ export function AstrolabeCountdown() {
         <text
           x={CX} y={CY + 17}
           textAnchor="middle" dominantBaseline="middle"
-          fill="#C9A24B" fontSize="7"
+          fill="#C9A24B" fontSize="8"
           fontFamily="var(--font-sans)" fontWeight="500" letterSpacing="0.18em"
-          opacity="0.55"
+          opacity="0.85"
         >
           DAYS
         </text>
@@ -136,7 +136,7 @@ export function AstrolabeCountdown() {
       <p
         role="timer"
         aria-label={time ? `${time.hours} hours ${time.minutes} minutes ${time.seconds} seconds` : 'loading'}
-        className="font-sans text-xs tracking-[0.22em] text-gold/35 tabular-nums"
+        className="font-sans text-sm tracking-[0.22em] text-gold/80 tabular-nums"
       >
         {time
           ? `${String(time.hours).padStart(2,'0')} : ${String(time.minutes).padStart(2,'0')} : ${String(time.seconds).padStart(2,'0')}`
