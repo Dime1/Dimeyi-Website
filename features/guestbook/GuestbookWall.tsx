@@ -29,7 +29,7 @@ export function GuestbookWall() {
       <div className="flex justify-center mb-16">
         <button
           onClick={() => setModalOpen(true)}
-          className="border border-gold/50 px-10 py-3 font-sans text-[11px] tracking-[0.18em] uppercase text-gold/80 hover:bg-gold/5 transition-colors"
+          className="border border-gold/50 px-10 py-3 font-sans text-sm font-medium tracking-[0.18em] uppercase text-gold/90 hover:bg-gold/5 transition-colors"
         >
           Leave a Blessing
         </button>
@@ -60,7 +60,7 @@ export function GuestbookWall() {
               <button
                 onClick={() => setModalOpen(false)}
                 aria-label="Close"
-                className="absolute top-4 right-4 text-plum/30 hover:text-plum/60 transition-colors text-lg leading-none"
+                className="absolute top-4 right-4 text-plum/60 hover:text-plum transition-colors text-lg leading-none"
               >
                 ✕
               </button>
@@ -68,7 +68,7 @@ export function GuestbookWall() {
               <h2 className="font-display text-2xl text-plum text-center mb-1">
                 Leave a Blessing
               </h2>
-              <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-plum/30 text-center mb-8">
+              <p className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/75 text-center mb-8">
                 Your words mean the world to us
               </p>
 
@@ -80,11 +80,11 @@ export function GuestbookWall() {
 
       {/* Entries */}
       {loading ? (
-        <p className="font-sans text-xs text-plum/30 text-center mt-16 tracking-widest uppercase">
+        <p className="font-sans text-sm font-medium text-plum/75 text-center mt-16 tracking-widest uppercase">
           Loading messages…
         </p>
       ) : entries.length === 0 ? (
-        <p className="font-sans text-xs text-plum/30 text-center mt-16 tracking-widest uppercase">
+        <p className="font-sans text-sm font-medium text-plum/75 text-center mt-16 tracking-widest uppercase">
           Be the first to leave a message
         </p>
       ) : (

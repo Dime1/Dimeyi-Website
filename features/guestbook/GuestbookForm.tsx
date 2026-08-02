@@ -44,7 +44,7 @@ export function GuestbookForm({ onSubmitted }: GuestbookFormProps) {
 
   if (submitted) {
     return (
-      <p className="font-script italic text-plum/60 text-2xl text-center py-8">
+      <p className="font-script italic text-plum/85 text-2xl text-center py-8">
         Thank you for your blessing ♡
       </p>
     )
@@ -58,7 +58,7 @@ export function GuestbookForm({ onSubmitted }: GuestbookFormProps) {
         </p>
       )}
       <div>
-        <label className="font-sans text-xs tracking-[0.18em] uppercase text-plum/70 block mb-1">
+        <label className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/85 block mb-1">
           Your Name
         </label>
         <input
@@ -71,7 +71,7 @@ export function GuestbookForm({ onSubmitted }: GuestbookFormProps) {
         />
       </div>
       <div>
-        <label className="font-sans text-xs tracking-[0.18em] uppercase text-plum/70 block mb-1">
+        <label className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/85 block mb-1">
           Leave a Message
         </label>
         <textarea
@@ -87,7 +87,7 @@ export function GuestbookForm({ onSubmitted }: GuestbookFormProps) {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full border border-gold/30 text-plum font-sans text-xs tracking-[0.18em] uppercase py-3 hover:bg-plum hover:text-ivory transition-colors duration-300 disabled:opacity-40"
+        className="w-full border border-gold/30 text-plum font-sans text-sm font-medium tracking-[0.18em] uppercase py-3 hover:bg-plum hover:text-ivory transition-colors duration-300 disabled:opacity-40"
       >
         {submitting ? 'Sending…' : 'Leave a Blessing'}
       </button>

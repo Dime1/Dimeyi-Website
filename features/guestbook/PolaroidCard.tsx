@@ -47,7 +47,7 @@ export function PolaroidCard({ authorName, message, rotation }: PolaroidCardProp
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.15 }}
-            className="font-sans text-[11px] text-plum/70 leading-relaxed text-center"
+            className="font-sans text-sm text-plum/85 leading-relaxed text-center"
           >
             {message}
           </motion.p>
