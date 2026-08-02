@@ -6,8 +6,8 @@ type Account = 'ng' | 'intl'
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="text-center">
-      <p className="font-sans text-xs uppercase tracking-[0.12em] text-plum/50 mt-2">{label}</p>
-      <p className="font-sans text-xs font-semibold text-plum">{value}</p>
+      <p className="font-sans text-sm uppercase tracking-[0.12em] text-plum/80 mt-2">{label}</p>
+      <p className="font-sans text-sm font-semibold text-plum">{value}</p>
     </div>
   )
 }
@@ -84,7 +84,7 @@ export function RegistrySection() {
               <button
                 aria-pressed={account === 'ng'}
                 className={`flex-1 py-1.5 font-sans text-xs font-bold tracking-widest uppercase transition-colors ${
-                  account === 'ng' ? 'bg-plum text-ivory' : 'bg-white text-plum/50'
+                  account === 'ng' ? 'bg-plum text-ivory' : 'bg-white text-plum/80'
                 }`}
                 onClick={e => { e.stopPropagation(); setAccount('ng') }}
               >
@@ -93,7 +93,7 @@ export function RegistrySection() {
               <button
                 aria-pressed={account === 'intl'}
                 className={`flex-1 py-1.5 font-sans text-xs font-bold tracking-widest uppercase transition-colors border-l ${
-                  account === 'intl' ? 'bg-plum text-ivory' : 'bg-white text-plum/50'
+                  account === 'intl' ? 'bg-plum text-ivory' : 'bg-white text-plum/80'
                 }`}
                 style={{ borderLeftColor: '#d8ccc4' }}
                 onClick={e => { e.stopPropagation(); setAccount('intl') }}
@@ -180,7 +180,7 @@ export function RegistrySection() {
               <path d="M22 15 C24.5 17 24.5 27 22 29" stroke="#fffaf6" strokeWidth="3"/>
               <path d="M22 15 C19.5 17 19.5 27 22 29" stroke="#fffaf6" strokeWidth="3"/>
             </svg>
-            <p className="font-sans text-xs uppercase tracking-[0.12em] text-plum/50 mb-4">
+            <p className="font-sans text-sm uppercase tracking-[0.12em] text-plum/80 mb-4">
               Browse our wishlist
             </p>
             <a

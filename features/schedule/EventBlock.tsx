@@ -19,26 +19,26 @@ export function EventBlock({ event }: EventBlockProps) {
 
       <h2 className="font-display text-2xl md:text-3xl text-plum mb-3">{event.name}</h2>
 
-      <p className="font-sans text-[11px] tracking-[0.18em] uppercase text-plum/45 mb-1">
+      <p className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/80 mb-1">
         {event.date}
         {!isPlaceholder(event.time) && ` · ${event.time}`}
       </p>
 
       {!isPlaceholder(event.location) && (
-        <p className="font-sans text-sm text-plum/65 mb-5">{event.location}</p>
+        <p className="font-sans text-base text-plum/85 mb-5">{event.location}</p>
       )}
 
       {!isPlaceholder(event.dresscode) && (
         <div className="mb-5">
-          <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-gold/45 mb-1">
+          <p className="font-sans text-sm font-medium tracking-[0.2em] uppercase text-gold/80 mb-1">
             Dress code
           </p>
-          <p className="font-sans text-sm text-plum/65">{event.dresscode}</p>
+          <p className="font-sans text-base text-plum/85">{event.dresscode}</p>
         </div>
       )}
 
       {event.note && (
-        <p className="font-sans text-xs text-plum/40 leading-relaxed italic border-l border-gold/20 pl-4 mb-6">
+        <p className="font-sans text-sm text-plum/75 leading-relaxed italic border-l border-gold/20 pl-4 mb-6">
           {event.note}
         </p>
       )}
