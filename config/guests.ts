@@ -119,7 +119,7 @@ export const GUEST_LIST: Guest[] = [
   { id: 'g112', firstName: 'Teju',       lastName: 'Onanuga'          },
   { id: 'g113', firstName: 'Opemipo',    lastName: 'Ogunrinola'       },
   { id: 'g114', firstName: 'Gbenga',     lastName: 'Adeyefa'          },
-  { id: 'g115', firstName: 'Walter',     lastName: 'Uchuebu'          },
+  { id: 'g115', firstName: 'Walter',     lastName: 'Uchegbu'          },
   { id: 'g116', firstName: 'Olabisi',    lastName: 'Akanji'           },
   { id: 'g117', firstName: 'Olubunmi',   lastName: 'Odekunle'         },
   { id: 'g118', firstName: 'Fidelis',    lastName: 'Uzoma'            },
