@@ -72,7 +72,7 @@ export function PolaroidCard({ authorName, message, rotation }: PolaroidCardProp
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.22 }}
                   className="text-center overflow-hidden"
                 >
-                  <p className="font-calligraphy italic text-[11px] text-plum/85 leading-relaxed mb-1.5 line-clamp-4">
+                  <p className="font-calligraphy italic text-[33px] text-plum/85 leading-relaxed mb-1.5">
                     {message}
                   </p>
                   <p className="font-script italic text-gold text-sm">— {authorName}</p>
