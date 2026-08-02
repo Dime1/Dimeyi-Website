@@ -1,5 +1,5 @@
-import { TimelineSection } from '@/features/timeline/TimelineSection'
+import { StorySection } from '@/features/story/StorySection'
 
 export default function OurStoryPage() {
-  return <TimelineSection />
+  return <StorySection />
 }

@@ -21,6 +21,9 @@ export function useAudio({ src, loop = true }: UseAudioOptions) {
     audio.addEventListener('play',  onPlay)
     audio.addEventListener('pause', onPause)
 
+    // Attempt autoplay on mount; browsers may block it — fails silently
+    audio.play().catch(() => {})
+
     return () => {
       audio.removeEventListener('play',  onPlay)
       audio.removeEventListener('pause', onPause)

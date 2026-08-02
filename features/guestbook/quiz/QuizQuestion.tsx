@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { QUIZ_QUESTIONS } from '@/config/content'
 
 type Question = typeof QUIZ_QUESTIONS[number]
@@ -17,21 +17,25 @@ export function QuizQuestion({ question, questionNum, total, onAnswer }: QuizQue
   const [selected,  setSelected]  = useState<number | null>(null)
   const [startTime]               = useState(() => Date.now())
   const [remaining, setRemaining] = useState(QUESTION_TIME_MS)
+  const onAnswerRef = useRef(onAnswer)
+  useEffect(() => { onAnswerRef.current = onAnswer })
 
   useEffect(() => {
     const interval = setInterval(() => {
       setRemaining(prev => {
         const next = prev - 200
-        if (next <= 0) {
-          clearInterval(interval)
-          onAnswer(false, QUESTION_TIME_MS)
-          return 0
-        }
+        if (next <= 0) { clearInterval(interval); return 0 }
         return next
       })
     }, 200)
     return () => clearInterval(interval)
-  }, [onAnswer])
+  }, [])
+
+  useEffect(() => {
+    if (remaining === 0 && selected === null) {
+      onAnswerRef.current(false, QUESTION_TIME_MS)
+    }
+  }, [remaining, selected])
 
   function handleSelect(idx: number) {
     if (selected !== null) return

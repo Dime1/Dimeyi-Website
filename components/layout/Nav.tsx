@@ -36,7 +36,7 @@ export function Nav() {
   const [open, setOpen] = useState(false)
 
   const linkClass = (href: string) => [
-    'relative text-sm font-sans font-medium tracking-[0.16em] uppercase',
+    'relative font-script italic font-bold text-base',
     reduced ? '' : 'transition-colors duration-[150ms] ease-[cubic-bezier(0.22,1,0.36,1)]',
     pathname === href ? 'text-gold' : 'text-ivory/90 hover:text-ivory',
     'after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-gold after:origin-left',
@@ -122,7 +122,7 @@ export function Nav() {
                       title={locked ? unlockLabel(href) : undefined}
                       aria-current={pathname === href ? 'page' : undefined}
                       className={[
-                        'text-base font-sans font-medium tracking-[0.14em] uppercase',
+                        'font-script italic font-bold text-xl',
                         pathname === href ? 'text-gold' : 'text-ivory/90 hover:text-ivory',
                         reduced ? '' : 'transition-colors duration-[150ms]',
                       ].join(' ')}

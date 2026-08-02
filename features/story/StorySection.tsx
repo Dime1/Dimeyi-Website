@@ -18,10 +18,10 @@ export function StorySection() {
     <section className="relative min-h-screen">
       <StoryBackground />
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-16 py-24 md:py-32" style={{ zIndex: 1 }}>
+      <div className="relative max-w-7xl mx-auto px-6 md:px-16 py-16 md:py-20" style={{ zIndex: 1 }}>
 
         {/* Page header */}
-        <header className="text-center mb-28 md:mb-44">
+        <header className="text-center mb-14 md:mb-20">
           <h1 className="font-display text-5xl md:text-7xl text-plum mb-4">
             Our Story
           </h1>

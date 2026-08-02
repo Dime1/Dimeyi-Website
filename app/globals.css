@@ -15,6 +15,14 @@
   --font-display: "Playfair Display", Georgia, serif;
   --font-script:  "Cormorant Garamond", Georgia, serif;
   --font-sans:    "Inter", system-ui, sans-serif;
+
+  /* Animations */
+  --animate-breathe: breathe 6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.015); }
 }
 
 @layer base {

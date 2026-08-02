@@ -218,7 +218,7 @@ export function StoryMovement({ movement, index, verseText, verseRef }: StoryMov
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-      className={`relative flex flex-col md:flex-row items-start md:items-center gap-12 md:gap-16 ${isProposal ? 'py-32 md:py-44' : 'py-24 md:py-36'}`}
+      className={`relative flex flex-col md:flex-row items-start md:items-center gap-10 md:gap-14 ${isProposal ? 'py-16 md:py-24' : 'py-12 md:py-16'}`}
     >
       {/* Faint Roman numeral — depth element, not a label */}
       <div
