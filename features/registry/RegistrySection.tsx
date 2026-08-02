@@ -1,13 +1,37 @@
 'use client'
 import { useState } from 'react'
 
-type Account = 'ng' | 'intl'
+type Account  = 'ng' | 'intl'
+type Currency = 'USD' | 'CAD' | 'GBP' | 'EUR'
+
+const CURRENCIES: Currency[] = ['USD', 'CAD', 'GBP', 'EUR']
+
+const INTL_ACCOUNTS: Record<Currency, { label: string; value: string }[]> = {
+  USD: [
+    { label: 'Zelle', value: 'MonMonehin'      },
+    { label: 'Name',  value: 'Feyisogo Monehin' },
+  ],
+  CAD: [
+    { label: 'Interac', value: 'feyimonehin@outlook.com' },
+    { label: 'Name',    value: 'Feyisogo Monehin'        },
+  ],
+  GBP: [
+    { label: 'Account No.', value: '38863348'        },
+    { label: 'Sort Code',   value: '231470'           },
+    { label: 'Name',        value: 'Feyisogo Monehin' },
+  ],
+  EUR: [
+    { label: 'Name',      value: 'Oladimeji David Oguntola' },
+    { label: 'IBAN',      value: 'BE51967741458262'          },
+    { label: 'SWIFT/BIC', value: 'TRWIBEB1XXX'               },
+  ],
+}
 
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="text-center">
-      <p className="font-sans text-sm uppercase tracking-[0.12em] text-plum/80 mt-2">{label}</p>
-      <p className="font-sans text-sm font-semibold text-plum">{value}</p>
+      <p className="font-sans text-[9px] uppercase tracking-[0.1em] text-plum/55 mt-2">{label}</p>
+      <p className="font-sans text-xs font-semibold text-plum leading-snug break-all">{value}</p>
     </div>
   )
 }
@@ -16,6 +40,7 @@ export function RegistrySection() {
   const [card1Flipped, setCard1Flipped] = useState(false)
   const [card2Flipped, setCard2Flipped] = useState(false)
   const [account,      setAccount]      = useState<Account>('ng')
+  const [currency,     setCurrency]     = useState<Currency>('EUR')
 
   return (
     <div className="flex gap-8 justify-center flex-wrap py-4">
@@ -63,7 +88,7 @@ export function RegistrySection() {
 
           {/* Back */}
           <div
-            className="absolute inset-0 rounded-2xl flex flex-col items-center justify-center p-5 shadow-lg"
+            className="absolute inset-0 rounded-2xl flex flex-col items-center p-5 shadow-lg overflow-hidden"
             style={{
               backfaceVisibility: 'hidden',
               transform:          'rotateY(180deg)',
@@ -75,11 +100,11 @@ export function RegistrySection() {
               Account Details
             </p>
 
-            {/* Tab switcher — stopPropagation so clicks don't flip the card */}
+            {/* Tab switcher */}
             <div
               className="flex w-full rounded-lg overflow-hidden mb-3"
               style={{ border: '1.5px solid #d8ccc4' }}
-              onClick={e => { e.preventDefault(); e.stopPropagation() }}
+              onClick={e => e.stopPropagation()}
             >
               <button
                 aria-pressed={account === 'ng'}
@@ -110,11 +135,28 @@ export function RegistrySection() {
                 <DetailRow label="Sort Code"    value="[SORT_CODE]"       />
               </div>
             ) : (
-              <div className="w-full">
-                <DetailRow label="Account Name" value="Feyisogo & Dimeji" />
-                <DetailRow label="IBAN"         value="[IBAN]"            />
-                <DetailRow label="BIC / SWIFT"  value="[BIC_SWIFT]"      />
-                <DetailRow label="Bank"         value="[BANK_NAME_INTL]"  />
+              <div className="w-full" onClick={e => e.stopPropagation()}>
+                {/* Currency pills */}
+                <div className="flex gap-1 w-full mb-2">
+                  {CURRENCIES.map(c => (
+                    <button
+                      key={c}
+                      onClick={e => { e.stopPropagation(); setCurrency(c) }}
+                      className={`flex-1 py-1 rounded font-sans text-[10px] font-bold tracking-wide transition-colors ${
+                        currency === c
+                          ? 'bg-plum text-ivory'
+                          : 'bg-plum/10 text-plum/70 hover:bg-plum/20'
+                      }`}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Account details for selected currency */}
+                {INTL_ACCOUNTS[currency].map(row => (
+                  <DetailRow key={row.label} label={row.label} value={row.value} />
+                ))}
               </div>
             )}
           </div>
