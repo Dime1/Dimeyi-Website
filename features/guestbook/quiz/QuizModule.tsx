@@ -52,32 +52,35 @@ export function QuizModule() {
 
   if (phase === 'setup') {
     return (
-      <div className="max-w-md mx-auto space-y-8">
-        <div>
-          <label className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/80 block mb-2 text-center">
-            Your Name
-          </label>
-          <input
-            value={name}
-            onChange={e => setName(e.target.value)}
-            placeholder="Enter your name"
-            className="w-full border border-gold/20 rounded-sm px-4 py-3 font-sans text-sm text-plum bg-transparent focus:outline-none focus:border-gold/50 text-center"
-          />
+      <div className="space-y-16">
+        <div className="max-w-md mx-auto space-y-8">
+          <div>
+            <label className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/80 block mb-2 text-center">
+              Your Name
+            </label>
+            <input
+              value={name}
+              onChange={e => setName(e.target.value)}
+              placeholder="Enter your name"
+              className="w-full border border-gold/20 rounded-sm px-4 py-3 font-sans text-sm text-plum bg-transparent focus:outline-none focus:border-gold/50 text-center"
+            />
+          </div>
+          <div>
+            <p className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/80 text-center mb-4">
+              Pick Your Avatar
+            </p>
+            <AvatarPicker selected={avatar} onSelect={setAvatar} />
+          </div>
+          <button
+            type="button"
+            disabled={!name.trim() || !avatar}
+            onClick={() => setPhase('playing')}
+            className="w-full border border-gold/30 text-plum font-sans text-sm font-medium tracking-[0.18em] uppercase py-3 hover:bg-plum hover:text-ivory transition-colors duration-300 disabled:opacity-40"
+          >
+            Begin the Quiz
+          </button>
         </div>
-        <div>
-          <p className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/80 text-center mb-4">
-            Pick Your Avatar
-          </p>
-          <AvatarPicker selected={avatar} onSelect={setAvatar} />
-        </div>
-        <button
-          type="button"
-          disabled={!name.trim() || !avatar}
-          onClick={() => setPhase('playing')}
-          className="w-full border border-gold/30 text-plum font-sans text-sm font-medium tracking-[0.18em] uppercase py-3 hover:bg-plum hover:text-ivory transition-colors duration-300 disabled:opacity-40"
-        >
-          Begin the Quiz
-        </button>
+        <Leaderboard />
       </div>
     )
   }
