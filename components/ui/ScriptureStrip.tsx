@@ -1,12 +1,13 @@
 interface ScriptureStripProps {
-  text:      string
-  reference: string
+  text:       string
+  reference:  string
+  className?: string
 }
 
-export function ScriptureStrip({ text, reference }: ScriptureStripProps) {
+export function ScriptureStrip({ text, reference, className = '' }: ScriptureStripProps) {
   return (
     <aside
-      className="relative w-full py-8 px-6 my-16 overflow-hidden"
+      className={`relative w-full py-3 px-6 my-2 overflow-hidden ${className}`}
       aria-label={`Scripture: ${reference}`}
     >
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"/>

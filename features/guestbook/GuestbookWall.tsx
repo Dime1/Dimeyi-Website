@@ -6,10 +6,14 @@ import { GuestbookForm, type GuestbookEntry } from './GuestbookForm'
 
 const ROTATIONS = [-2, 1.5, -0.5, 2.5, -1, 1]
 
-export function GuestbookWall() {
-  const [entries,   setEntries]   = useState<GuestbookEntry[]>([])
-  const [loading,   setLoading]   = useState(true)
-  const [modalOpen, setModalOpen] = useState(false)
+interface GuestbookWallProps {
+  open:    boolean
+  onClose: () => void
+}
+
+export function GuestbookWall({ open, onClose }: GuestbookWallProps) {
+  const [entries, setEntries] = useState<GuestbookEntry[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch('/api/guestbook')
@@ -20,24 +24,14 @@ export function GuestbookWall() {
 
   function handleNewEntry(entry: GuestbookEntry) {
     setEntries(prev => [entry, ...prev])
-    setModalOpen(false)
+    onClose()
   }
 
   return (
     <div>
-      {/* Trigger button */}
-      <div className="flex justify-center mb-16">
-        <button
-          onClick={() => setModalOpen(true)}
-          className="border border-gold/50 px-10 py-3 font-sans text-sm font-medium tracking-[0.18em] uppercase text-gold/90 hover:bg-gold/5 transition-colors"
-        >
-          Leave a Blessing
-        </button>
-      </div>
-
-      {/* Modal */}
+      {/* Modal — controlled by parent */}
       <AnimatePresence>
-        {modalOpen && (
+        {open && (
           <motion.div
             key="backdrop"
             initial={{ opacity: 0 }}
@@ -45,7 +39,7 @@ export function GuestbookWall() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-plum/40 backdrop-blur-sm px-4"
-            onClick={() => setModalOpen(false)}
+            onClick={onClose}
           >
             <motion.div
               key="modal"
@@ -56,9 +50,8 @@ export function GuestbookWall() {
               className="relative w-full max-w-md bg-ivory rounded-sm shadow-2xl px-8 pt-10 pb-8"
               onClick={e => e.stopPropagation()}
             >
-              {/* Close button */}
               <button
-                onClick={() => setModalOpen(false)}
+                onClick={onClose}
                 aria-label="Close"
                 className="absolute top-4 right-4 text-plum/60 hover:text-plum transition-colors text-lg leading-none"
               >
@@ -80,15 +73,15 @@ export function GuestbookWall() {
 
       {/* Entries */}
       {loading ? (
-        <p className="font-sans text-sm font-medium text-plum/75 text-center mt-16 tracking-widest uppercase">
+        <p className="font-sans text-sm font-medium text-ivory/75 text-center mt-8 tracking-widest uppercase">
           Loading messages…
         </p>
       ) : entries.length === 0 ? (
-        <p className="font-sans text-sm font-medium text-plum/75 text-center mt-16 tracking-widest uppercase">
+        <p className="font-sans text-sm font-medium text-ivory/75 text-center mt-8 tracking-widest uppercase">
           Be the first to leave a message
         </p>
       ) : (
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 mt-10">
           {entries.map((entry, i) => (
             <PolaroidCard
               key={entry.id}

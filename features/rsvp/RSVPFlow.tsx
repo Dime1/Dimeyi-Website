@@ -37,14 +37,22 @@ export function RSVPFlow() {
     setIsSubmitting(true)
     setError(null)
     try {
-      const res = await fetch('/api/rsvp', {
+      const res  = await fetch('/api/rsvp', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify(payload),
       })
-      if (!res.ok) throw new Error('Submit failed')
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}))
+        console.error('[RSVP] API error:', res.status, body)
+        const fieldErrors = body?.error?.fieldErrors
+        const firstFieldError = fieldErrors && (Object.values(fieldErrors) as string[][]).flat()[0]
+        setError(firstFieldError ?? body?.detail ?? (typeof body?.error === 'string' ? body.error : null) ?? 'Something went wrong. Please try again.')
+        return
+      }
       setStep(4)
-    } catch {
+    } catch (err) {
+      console.error('[RSVP] Network error:', err)
       setError('Something went wrong. Please try again.')
     } finally {
       setIsSubmitting(false)

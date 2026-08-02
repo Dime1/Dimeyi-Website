@@ -7,9 +7,9 @@ export const stepEntrySchema = z.object({
   name:  z.string().min(2, 'Please enter your full name'),
   email: z.string().email('Please enter a valid email address'),
   phone: z.string()
-    .min(5,  'Please enter your local number')
-    .max(15, 'Please enter a valid phone number')
-    .regex(/^\d+$/, 'Digits only — no spaces or dashes'),
+    .min(5,  'Please enter your phone number')
+    .max(20, 'Please enter a valid phone number')
+    .regex(/^[+\d\s\-()\/.]+$/, 'Please enter a valid phone number'),
 })
 export type StepEntryValues = z.infer<typeof stepEntrySchema>
 
