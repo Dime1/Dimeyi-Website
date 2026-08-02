@@ -3,27 +3,30 @@
 import { useState }               from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BeadProgressBar }         from './BeadProgressBar'
+import { StepSearch }              from './StepSearch'
 import { StepEntry }               from './StepEntry'
 import { StepAttendance }          from './StepAttendance'
 import { StepDetails }             from './StepDetails'
 import { StepConfirmation }        from './StepConfirmation'
 import type { StepEntryValues, StepDetailsValues, RSVPPayload } from '@/lib/rsvp-schema'
+import type { Guest } from '@/config/guests'
 
-type Step = 1 | 2 | 3 | 4
+type Step = 1 | 2 | 3 | 4 | 5
 
 interface Accumulated {
-  name?:        string
-  email?:       string
-  phone?:       string
-  attending?:   boolean
-  asoebi_size?: string
+  name?:          string
+  email?:         string
+  phone?:         string
+  attending?:     boolean
+  asoebi_size?:   string
+  plus_one_name?: string
 }
 
-const STEP_TITLES: Record<Step, string> = {
-  1: 'Your Details',
-  2: 'Will You Attend?',
-  3: 'A Few More Things',
-  4: '',
+const STEP_TITLES: Record<1 | 2 | 3 | 4, string> = {
+  1: 'Find Your Name',
+  2: 'Your Details',
+  3: 'Will You Attend?',
+  4: 'A Few More Things',
 }
 
 export function RSVPFlow() {
@@ -37,60 +40,66 @@ export function RSVPFlow() {
     setIsSubmitting(true)
     setError(null)
     try {
-      const res  = await fetch('/api/rsvp', {
+      const res = await fetch('/api/rsvp', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify(payload),
       })
       if (!res.ok) {
         const body = await res.json().catch(() => ({}))
-        console.error('[RSVP] API error:', res.status, body)
-        const fieldErrors = body?.error?.fieldErrors
+        const fieldErrors     = body?.error?.fieldErrors
         const firstFieldError = fieldErrors && (Object.values(fieldErrors) as string[][]).flat()[0]
         setError(firstFieldError ?? body?.detail ?? (typeof body?.error === 'string' ? body.error : null) ?? 'Something went wrong. Please try again.')
         return
       }
-      setStep(4)
-    } catch (err) {
-      console.error('[RSVP] Network error:', err)
+      setStep(5)
+    } catch {
       setError('Something went wrong. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  function handleStep1(values: StepEntryValues) {
-    setData(d => ({ ...d, ...values }))
+  function handleStep1(guest: Guest) {
+    setData(d => ({ ...d, name: `${guest.firstName} ${guest.lastName}` }))
     setStep(2)
   }
 
-  function handleStep2({ attending }: { attending: boolean }) {
+  function handleStep2(values: StepEntryValues) {
+    setData(d => ({ ...d, ...values }))
+    setStep(3)
+  }
+
+  function handleStep3({ attending }: { attending: boolean }) {
     const next = { ...data, attending }
     setData(next)
     if (!attending) {
       submitRSVP({ name: next.name!, email: next.email!, phone: next.phone!, attending: false })
     } else {
-      setStep(3)
+      setStep(4)
     }
   }
 
-  function handleStep3(values: StepDetailsValues) {
+  function handleStep4(values: StepDetailsValues) {
     submitRSVP({
-      name:        data.name!,
-      email:       data.email!,
-      phone:       data.phone!,
-      attending:   true,
-      asoebi_size: values.asoebi_size,
+      name:          data.name!,
+      email:         data.email!,
+      phone:         data.phone!,
+      attending:     true,
+      asoebi_size:   values.asoebi_size,
+      plus_one_name: values.plus_one_name,
     })
   }
 
+  const showBar = step < 5
+
   return (
     <div className="max-w-md mx-auto px-6 py-16">
-      {step < 4 && (
+      {showBar && (
         <div className="mb-10 text-center space-y-4">
           <BeadProgressBar currentStep={step} totalSteps={4} />
-          <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-plum/30">
-            {STEP_TITLES[step]}
+          <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-plum/50">
+            {STEP_TITLES[step as 1 | 2 | 3 | 4]}
           </p>
         </div>
       )}
@@ -110,25 +119,29 @@ export function RSVPFlow() {
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
           {step === 1 && (
-            <StepEntry
-              initial={{ name: data.name, email: data.email, phone: data.phone }}
-              onNext={handleStep1}
-            />
+            <StepSearch onNext={handleStep1} />
           )}
           {step === 2 && (
-            <StepAttendance
-              name={data.name ?? 'friend'}
+            <StepEntry
+              guestName={data.name ?? ''}
+              initial={{ email: data.email, phone: data.phone }}
               onNext={handleStep2}
             />
           )}
           {step === 3 && (
-            <StepDetails
-              initial={{}}
+            <StepAttendance
+              name={data.name ?? 'friend'}
               onNext={handleStep3}
-              isSubmitting={isSubmitting}
             />
           )}
           {step === 4 && (
+            <StepDetails
+              initial={{}}
+              onNext={handleStep4}
+              isSubmitting={isSubmitting}
+            />
+          )}
+          {step === 5 && (
             <StepConfirmation
               name={data.name ?? 'friend'}
               attending={data.attending ?? false}

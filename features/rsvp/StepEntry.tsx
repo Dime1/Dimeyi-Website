@@ -1,28 +1,29 @@
 'use client'
 
-import { useState }              from 'react'
-import { useForm }               from 'react-hook-form'
-import { zodResolver }           from '@hookform/resolvers/zod'
+import { useState }    from 'react'
+import { useForm }     from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { stepEntrySchema, type StepEntryValues } from '@/lib/rsvp-schema'
 
 interface StepEntryProps {
-  initial: Partial<StepEntryValues>
-  onNext:  (data: StepEntryValues) => void
+  guestName: string
+  initial:   Partial<StepEntryValues>
+  onNext:    (data: StepEntryValues) => void
 }
 
 const COUNTRY_CODES = [
-  { name: 'Nigeria',  code: '+234', flag: '🇳🇬' },
-  { name: 'Germany',  code: '+49',  flag: '🇩🇪' },
-  { name: 'UK',       code: '+44',  flag: '🇬🇧' },
-  { name: 'Ireland',  code: '+353', flag: '🇮🇪' },
-  { name: 'USA',      code: '+1',   flag: '🇺🇸' },
-  { name: 'Canada',   code: '+1',   flag: '🇨🇦' },
+  { name: 'Nigeria', code: '+234', flag: '🇳🇬' },
+  { name: 'Germany', code: '+49',  flag: '🇩🇪' },
+  { name: 'UK',      code: '+44',  flag: '🇬🇧' },
+  { name: 'Ireland', code: '+353', flag: '🇮🇪' },
+  { name: 'USA',     code: '+1',   flag: '🇺🇸' },
+  { name: 'Canada',  code: '+1',   flag: '🇨🇦' },
 ] as const
 
 const inputClass = 'w-full border border-gold/35 rounded-sm bg-ivory/60 px-4 py-3 font-sans text-sm text-plum placeholder:text-plum/50 focus:outline-none focus:border-gold/70 transition-colors'
 const labelClass = 'block font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/85 mb-2'
 
-export function StepEntry({ initial, onNext }: StepEntryProps) {
+export function StepEntry({ guestName, initial, onNext }: StepEntryProps) {
   const [countryCode, setCountryCode] = useState('+234')
 
   const { register, handleSubmit, formState: { errors } } = useForm<StepEntryValues>({
@@ -37,22 +38,13 @@ export function StepEntry({ initial, onNext }: StepEntryProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
 
-      {/* Name */}
-      <div>
-        <label htmlFor="rsvp-name" className={labelClass}>
-          Your Name <span className="text-red-500 ml-0.5">*</span>
-        </label>
-        <input
-          id="rsvp-name"
-          type="text"
-          autoComplete="name"
-          className={inputClass}
-          placeholder="Full name"
-          {...register('name')}
-        />
-        {errors.name && (
-          <p role="alert" className="mt-2 font-sans text-xs text-red-600/80">{errors.name.message}</p>
-        )}
+      {/* Confirmed name — locked */}
+      <div className="border border-gold/20 rounded-sm bg-gold/5 px-4 py-3 flex items-center gap-3">
+        <span className="text-gold text-lg">✓</span>
+        <div>
+          <p className="font-sans text-xs tracking-[0.18em] uppercase text-plum/60 mb-0.5">Attending as</p>
+          <p className="font-sans text-sm font-medium text-plum">{guestName}</p>
+        </div>
       </div>
 
       {/* Email */}
@@ -79,7 +71,6 @@ export function StepEntry({ initial, onNext }: StepEntryProps) {
           Phone Number <span className="text-red-500 ml-0.5">*</span>
         </label>
         <div className="flex gap-2">
-          {/* Country code picker */}
           <select
             value={countryCode}
             onChange={e => setCountryCode(e.target.value)}
@@ -92,8 +83,6 @@ export function StepEntry({ initial, onNext }: StepEntryProps) {
               </option>
             ))}
           </select>
-
-          {/* Local number */}
           <input
             id="rsvp-phone"
             type="tel"
