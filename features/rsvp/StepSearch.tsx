@@ -75,7 +75,7 @@ export function StepSearch({ onNext }: StepSearchProps) {
           onKeyDown={handleKeyDown}
           placeholder="Enter your last name"
           autoComplete="off"
-          className="w-full border border-gold/35 rounded-sm bg-ivory/60 px-4 py-3 font-sans text-sm text-plum placeholder:text-plum/50 focus:outline-none focus:border-gold/70 transition-colors"
+          className="w-full border border-gold/60 rounded-sm bg-ivory/60 px-4 py-3 font-sans text-sm text-plum placeholder:text-plum/60 focus:outline-none focus:border-gold transition-colors"
         />
       </div>
 
@@ -114,7 +114,7 @@ export function StepSearch({ onNext }: StepSearchProps) {
           type="button"
           disabled={!selected}
           onClick={() => selected && onNext(selected)}
-          className="w-full border border-gold/50 rounded-sm py-3 font-sans text-sm font-medium tracking-[0.16em] uppercase text-gold/90 hover:bg-gold/5 transition-colors disabled:opacity-40"
+          className="w-full border border-gold rounded-sm py-3 font-sans text-sm font-medium tracking-[0.16em] uppercase text-gold hover:bg-gold/10 transition-colors disabled:opacity-40"
         >
           Continue
         </button>
@@ -123,7 +123,7 @@ export function StepSearch({ onNext }: StepSearchProps) {
           type="button"
           disabled={!query.trim()}
           onClick={handleSearch}
-          className="w-full border border-gold/50 rounded-sm py-3 font-sans text-sm font-medium tracking-[0.16em] uppercase text-gold/90 hover:bg-gold/5 transition-colors disabled:opacity-40"
+          className="w-full border border-gold rounded-sm py-3 font-sans text-sm font-medium tracking-[0.16em] uppercase text-gold hover:bg-gold/10 transition-colors disabled:opacity-40"
         >
           Search
         </button>
