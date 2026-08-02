@@ -20,7 +20,9 @@ export function QuizModule() {
   const [submitError,  setSubmitError]  = useState<string | null>(null)
   const [submitting,   setSubmitting]   = useState(false)
 
-  const questions = [...QUIZ_QUESTIONS]
+  const [questions] = useState(() =>
+    [...QUIZ_QUESTIONS].sort(() => Math.random() - 0.5)
+  )
 
   useEffect(() => {
     if (localStorage.getItem(LS_KEY)) setPhase('blocked')
