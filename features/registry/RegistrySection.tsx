@@ -8,11 +8,11 @@ const CURRENCIES: Currency[] = ['USD', 'CAD', 'GBP', 'EUR']
 
 const INTL_ACCOUNTS: Record<Currency, { label: string; value: string }[]> = {
   USD: [
-    { label: 'Zelle', value: 'MonMonehin'      },
+    { label: 'Zelle', value: 'feyimonehin@yahoo.com'      },
     { label: 'Name',  value: 'Feyisogo Monehin' },
   ],
   CAD: [
-    { label: 'Interac', value: 'feyimonehin@outlook.com' },
+    { label: 'Interac', value: 'feyimonehin@yahoo.com' },
     { label: 'Name',    value: 'Feyisogo Monehin'        },
   ],
   GBP: [
@@ -21,9 +21,9 @@ const INTL_ACCOUNTS: Record<Currency, { label: string; value: string }[]> = {
     { label: 'Name',        value: 'Feyisogo Monehin' },
   ],
   EUR: [
-    { label: 'Name',      value: 'Oladimeji David Oguntola' },
     { label: 'IBAN',      value: 'BE51967741458262'          },
     { label: 'SWIFT/BIC', value: 'TRWIBEB1XXX'               },
+    { label: 'Name',      value: 'Oladimeji David Oguntola' },
   ],
 }
 
@@ -113,7 +113,7 @@ export function RegistrySection() {
                 }`}
                 onClick={e => { e.stopPropagation(); setAccount('ng') }}
               >
-                🇳🇬 Nigerian
+                🇳🇬 NGN
               </button>
               <button
                 aria-pressed={account === 'intl'}

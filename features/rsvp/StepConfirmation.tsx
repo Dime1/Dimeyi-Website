@@ -48,7 +48,7 @@ export function StepConfirmation({ name, attending }: StepConfirmationProps) {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.25, type: 'spring', stiffness: 180, damping: 14 }}
         >
-          Feyisogo &amp; Dimeji
+          Feyisogo &amp; Oladimeji
         </motion.span>
       </div>
 

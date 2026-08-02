@@ -19,7 +19,7 @@ export default function RSVPPage() {
               RSVP
             </h1>
             <p className="font-sans text-xs tracking-[0.18em] uppercase text-plum/80">
-              February 18, 2027 · Feyisogo &amp; Dimeji
+              February 18, 2027 · Feyisogo &amp; Oladimeji
             </p>
           </div>
 
