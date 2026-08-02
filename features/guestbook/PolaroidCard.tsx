@@ -72,10 +72,10 @@ export function PolaroidCard({ authorName, message, rotation }: PolaroidCardProp
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.22 }}
                   className="text-center overflow-hidden"
                 >
-                  <p className="font-calligraphy italic text-[17px] text-plum/85 leading-relaxed mb-1.5">
+                  <p className="font-calligraphy italic text-[15px] text-plum/85 leading-relaxed mb-1.5">
                     {message}
                   </p>
-                  <p className="font-script italic text-gold text-sm">— {authorName}</p>
+                  <p className="font-script italic text-plum text-sm">— {authorName}</p>
                 </motion.div>
               )}
             </AnimatePresence>
