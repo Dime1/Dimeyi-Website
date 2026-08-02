@@ -147,7 +147,7 @@ export function StoryMovement({ movement, index, verseText, verseRef }: StoryMov
             whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.1 + fi * 0.15 }}
-            className={`font-script italic leading-snug ${palette.fragment} ${isProposal ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'}`}
+            className={`font-script italic font-bold leading-snug ${palette.fragment} ${isProposal ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'}`}
           >
             {fragment}
           </motion.p>
