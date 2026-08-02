@@ -1,24 +1,52 @@
 'use client'
 
-import { useState, useMemo } from 'react'
-import { GUEST_LIST, type Guest } from '@/config/guests'
+import { useState, useEffect, useMemo } from 'react'
+import { GUEST_LIST, type Guest }        from '@/config/guests'
 
 interface StepSearchProps {
   onNext: (guest: Guest) => void
 }
 
 export function StepSearch({ onNext }: StepSearchProps) {
+  const [guests,   setGuests]   = useState<Guest[]>([])
+  const [loading,  setLoading]  = useState(true)
   const [query,    setQuery]    = useState('')
   const [selected, setSelected] = useState<Guest | null>(null)
+
+  useEffect(() => {
+    fetch('/api/guests')
+      .then(r => r.json())
+      .then(json => {
+        if (json.guests?.length) {
+          setGuests(json.guests.map((g: { id: string; first_name: string; last_name: string }) => ({
+            id:        g.id,
+            firstName: g.first_name,
+            lastName:  g.last_name,
+          })))
+        } else {
+          setGuests(GUEST_LIST)
+        }
+      })
+      .catch(() => setGuests(GUEST_LIST))
+      .finally(() => setLoading(false))
+  }, [])
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase()
     if (q.length < 2) return []
-    return GUEST_LIST.filter(g => g.lastName.toLowerCase().includes(q))
-  }, [query])
+    return guests.filter(g => g.lastName.toLowerCase().includes(q))
+  }, [query, guests])
 
-  const hasQuery   = query.trim().length >= 2
-  const noResults  = hasQuery && results.length === 0
+  const hasQuery  = query.trim().length >= 2
+  const noResults = hasQuery && results.length === 0
+
+  if (loading) {
+    return (
+      <p className="font-sans text-sm font-medium text-plum/60 text-center py-12 tracking-widest uppercase">
+        Loading guest list…
+      </p>
+    )
+  }
 
   return (
     <div className="space-y-6">
@@ -31,15 +59,14 @@ export function StepSearch({ onNext }: StepSearchProps) {
           type="text"
           value={query}
           onChange={e => { setQuery(e.target.value); setSelected(null) }}
-          placeholder="e.g. Okafor"
+          placeholder="e.g. Monehin"
           autoComplete="off"
           className="w-full border border-gold/35 rounded-sm bg-ivory/60 px-4 py-3 font-sans text-sm text-plum placeholder:text-plum/50 focus:outline-none focus:border-gold/70 transition-colors"
         />
       </div>
 
-      {/* Results */}
       {hasQuery && (
-        <div className="space-y-2">
+        <div className="space-y-2 max-h-56 overflow-y-auto">
           {results.map(guest => (
             <button
               key={guest.id}
