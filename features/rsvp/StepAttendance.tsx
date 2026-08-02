@@ -16,14 +16,14 @@ export function StepAttendance({ name, onNext }: StepAttendanceProps) {
         <button
           type="button"
           onClick={() => onNext({ attending: true })}
-          className="w-full border border-gold/60 rounded-sm py-5 font-sans text-xs tracking-[0.2em] uppercase text-gold hover:bg-gold/8 transition-colors"
+          className="w-full border border-gold/60 rounded-sm py-5 font-sans text-sm font-medium tracking-[0.2em] uppercase text-gold hover:bg-gold/8 transition-colors"
         >
           I will joyfully attend
         </button>
         <button
           type="button"
           onClick={() => onNext({ attending: false })}
-          className="w-full border border-gold/30 rounded-sm py-5 font-sans text-xs tracking-[0.2em] uppercase text-plum/60 hover:border-gold/50 hover:text-plum/75 transition-colors"
+          className="w-full border border-gold/30 rounded-sm py-5 font-sans text-sm font-medium tracking-[0.2em] uppercase text-plum/85 hover:border-gold/50 hover:text-plum transition-colors"
         >
           I am unable to attend
         </button>

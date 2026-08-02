@@ -27,11 +27,11 @@ export function StepDetails({ initial, onNext, isSubmitting }: StepDetailsProps)
     <form onSubmit={handleSubmit((data) => onNext(data))} className="space-y-6" noValidate>
       {/* Aso-ebi size */}
       <div>
-        <p className="font-sans text-xs tracking-[0.18em] uppercase text-plum/70 mb-1">
+        <p className="font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/85 mb-1">
           Aso-Ebi Size
-          <span className="ml-2 text-plum/50 normal-case tracking-normal">(optional)</span>
+          <span className="ml-2 text-plum/75 normal-case tracking-normal">(optional)</span>
         </p>
-        <p className="font-sans text-xs text-plum/55 mb-3">
+        <p className="font-sans text-sm text-plum/80 mb-3">
           Coordinated fabric — details shared with confirmed guests
         </p>
         <div className="flex flex-wrap gap-2">
@@ -46,7 +46,7 @@ export function StepDetails({ initial, onNext, isSubmitting }: StepDetailsProps)
                 'px-4 py-2 border rounded-sm font-sans text-xs transition-colors',
                 selectedSize === size
                   ? 'border-gold bg-gold/10 text-gold'
-                  : 'border-gold/35 text-plum/65 hover:border-gold/55',
+                  : 'border-gold/35 text-plum/80 hover:border-gold/55',
               ].join(' ')}
             >
               {size}
@@ -58,7 +58,7 @@ export function StepDetails({ initial, onNext, isSubmitting }: StepDetailsProps)
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full border border-gold/60 rounded-sm py-3 font-sans text-xs tracking-[0.16em] uppercase text-gold hover:bg-gold/5 disabled:opacity-40 transition-colors"
+        className="w-full border border-gold/60 rounded-sm py-3 font-sans text-sm font-medium tracking-[0.16em] uppercase text-gold hover:bg-gold/5 disabled:opacity-40 transition-colors"
       >
         {isSubmitting ? 'Sending…' : 'Confirm RSVP'}
       </button>

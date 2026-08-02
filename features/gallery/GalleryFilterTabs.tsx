@@ -21,10 +21,10 @@ export function GalleryFilterTabs({ active, onChange }: GalleryFilterTabsProps) 
           role="tab"
           aria-selected={active === tab.value}
           onClick={() => onChange(tab.value)}
-          className={`font-sans text-xs tracking-[0.18em] uppercase pb-1 transition-colors duration-200 ${
+          className={`font-sans text-sm tracking-[0.18em] uppercase pb-1 transition-colors duration-200 ${
             active === tab.value
               ? 'text-plum border-b border-gold'
-              : 'text-plum/40 hover:text-plum/70'
+              : 'text-plum/70 hover:text-plum/90'
           }`}
         >
           {tab.label}

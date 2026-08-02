@@ -9,8 +9,8 @@ interface StepEntryProps {
   onNext:  (data: StepEntryValues) => void
 }
 
-const inputClass = 'w-full border border-gold/35 rounded-sm bg-ivory/60 px-4 py-3 font-sans text-sm text-plum placeholder:text-plum/45 focus:outline-none focus:border-gold/70 transition-colors'
-const labelClass = 'block font-sans text-xs tracking-[0.18em] uppercase text-plum/70 mb-2'
+const inputClass = 'w-full border border-gold/35 rounded-sm bg-ivory/60 px-4 py-3 font-sans text-sm text-plum placeholder:text-plum/50 focus:outline-none focus:border-gold/70 transition-colors'
+const labelClass = 'block font-sans text-sm font-medium tracking-[0.18em] uppercase text-plum/85 mb-2'
 
 export function StepEntry({ initial, onNext }: StepEntryProps) {
   const { register, handleSubmit, formState: { errors } } = useForm<StepEntryValues>({
@@ -67,7 +67,7 @@ export function StepEntry({ initial, onNext }: StepEntryProps) {
 
       <button
         type="submit"
-        className="w-full border border-gold/50 rounded-sm py-3 font-sans text-[11px] tracking-[0.16em] uppercase text-gold/80 hover:bg-gold/5 transition-colors"
+        className="w-full border border-gold/50 rounded-sm py-3 font-sans text-sm font-medium tracking-[0.16em] uppercase text-gold/90 hover:bg-gold/5 transition-colors"
       >
         Continue
       </button>

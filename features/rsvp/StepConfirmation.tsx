@@ -64,7 +64,7 @@ export function StepConfirmation({ name, attending }: StepConfirmationProps) {
             ? `We cannot wait to celebrate with you, ${name}!`
             : `Thank you, ${name}`}
         </p>
-        <p className="font-sans text-sm text-plum/70 leading-relaxed max-w-xs mx-auto">
+        <p className="font-sans text-sm text-plum/85 leading-relaxed max-w-xs mx-auto">
           {attending
             ? 'Your RSVP has been received. Travel details and further information will be shared soon.'
             : 'We will miss you on our special day. Your love and support mean everything to us.'}
