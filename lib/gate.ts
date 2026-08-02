@@ -8,6 +8,10 @@ export interface PageAccess {
 }
 
 export function getPageAccess(page: GatedPage, rsvpStatus?: string): PageAccess {
+  if (process.env.DEV_GATE_BYPASS === 'true' && process.env.NODE_ENV !== 'production') {
+    return { state: 'full' }
+  }
+
   const now        = new Date()
   const unlockDate = UNLOCK_DATES[page]
 
