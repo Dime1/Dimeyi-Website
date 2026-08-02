@@ -4,7 +4,6 @@ import { motion, AnimatePresence }            from 'framer-motion'
 import { PolaroidCard }                       from './PolaroidCard'
 import { GuestbookForm, type GuestbookEntry } from './GuestbookForm'
 
-const ROTATIONS = [-2, 1.5, -0.5, 2.5, -1, 1]
 
 interface GuestbookWallProps {
   open:    boolean
@@ -81,13 +80,13 @@ export function GuestbookWall({ open, onClose }: GuestbookWallProps) {
           Be the first to leave a message
         </p>
       ) : (
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 mt-10">
-          {entries.map((entry, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+          {entries.map((entry) => (
             <PolaroidCard
               key={entry.id}
               authorName={entry.author_name}
               message={entry.message}
-              rotation={ROTATIONS[i % ROTATIONS.length]}
+              rotation={0}
             />
           ))}
         </div>
