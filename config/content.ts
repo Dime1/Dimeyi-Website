@@ -2,7 +2,7 @@ export const COUPLE = {
   bride:        'Feyisogo',
   groom:        'Oladimeji',
   groomNick:    'Dimeji',
-  displayNames: 'Feyisogo & Dimeji',
+  displayNames: 'Feyisogo & Oladimeji',
   fullNames:    'Feyisogo & Oladimeji',
   hashtag:      '[WEDDING_HASHTAG]',
 } as const
