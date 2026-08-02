@@ -2,8 +2,9 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion'
-import { StarfieldCanvas }      from '@/features/hero/StarfieldCanvas'
-import { AstrolabeCountdown }   from '@/features/hero/AstrolabeCountdown'
+import { StarfieldCanvas }        from '@/features/hero/StarfieldCanvas'
+import { AstrolabeCountdown }     from '@/features/hero/AstrolabeCountdown'
+import { FloatingAmbientIcons }   from '@/features/hero/FloatingAmbientIcons'
 import { useReducedMotion }     from '@/lib/hooks/useReducedMotion'
 import { COUPLE, VERSES, WEDDING } from '@/config/content'
 
@@ -40,6 +41,9 @@ export function HeroSection() {
     >
       {/* Starfield canvas */}
       <StarfieldCanvas count={100} />
+
+      {/* Floating ambient romantic icons */}
+      <FloatingAmbientIcons />
 
       {/* Hidden video slot — add src when footage arrives */}
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
