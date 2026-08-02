@@ -1,16 +1,27 @@
 'use client'
 
 interface StepAttendanceProps {
-  name:   string
-  onNext: (data: { attending: boolean }) => void
+  name:               string
+  previousAttending?: boolean
+  onNext:             (data: { attending: boolean }) => void
 }
 
-export function StepAttendance({ name, onNext }: StepAttendanceProps) {
+export function StepAttendance({ name, previousAttending, onNext }: StepAttendanceProps) {
   return (
     <div className="space-y-8">
-      <p className="font-script italic text-gold/90 text-center text-2xl leading-relaxed">
-        Will {name} be joining us to celebrate?
-      </p>
+      <div className="text-center space-y-2">
+        <p className="font-script italic text-gold/90 text-2xl leading-relaxed">
+          Will {name} be joining us to celebrate?
+        </p>
+        {previousAttending !== undefined && (
+          <p className="font-sans text-xs text-plum/50">
+            Previous response:{' '}
+            <span className="font-semibold text-plum/70">
+              {previousAttending ? 'Attending' : 'Not attending'}
+            </span>
+          </p>
+        )}
+      </div>
 
       <div className="grid grid-cols-1 gap-4">
         <button

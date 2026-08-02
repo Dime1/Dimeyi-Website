@@ -3,6 +3,23 @@ import { NextResponse } from 'next/server'
 import { rsvpSchema }   from '@/lib/rsvp-schema'
 import { getSupabaseAdmin } from '@/lib/supabase'
 
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url)
+  const email = searchParams.get('email')
+  const name  = searchParams.get('name')
+
+  if (!email && !name) return NextResponse.json({ rsvp: null })
+
+  const supabase = getSupabaseAdmin()
+
+  const query = email
+    ? supabase.from('rsvp').select('attending, asoebi_size, plus_one_name').eq('email', email)
+    : supabase.from('rsvp').select('attending, asoebi_size, plus_one_name').ilike('name', name!)
+
+  const { data } = await query.maybeSingle()
+  return NextResponse.json({ rsvp: data ?? null })
+}
+
 export async function POST(req: Request) {
   const body   = await req.json()
   const parsed = rsvpSchema.safeParse(body)

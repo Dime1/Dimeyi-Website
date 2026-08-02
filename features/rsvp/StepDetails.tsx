@@ -17,7 +17,7 @@ interface StepDetailsProps {
 }
 
 export function StepDetails({ initial, onNext, isSubmitting }: StepDetailsProps) {
-  const [hasPlusOne, setHasPlusOne] = useState(false)
+  const [hasPlusOne, setHasPlusOne] = useState(() => !!initial.plus_one_name)
 
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<StepDetailsValues>({
     resolver:      zodResolver(stepDetailsSchema),
