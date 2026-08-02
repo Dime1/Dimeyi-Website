@@ -18,18 +18,21 @@ const ROMAN = ['I', 'II', 'III']
 const PALETTE = {
   friendship: {
     fragment:    'text-rose',
-    unfold:      'text-rose hover:text-rose/80',
     placeholder: 'from-blush via-rose/20 to-blush/60',
+    btn:         'border-rose/40 text-rose hover:border-rose hover:bg-rose/10',
+    btnOpen:     'border-rose text-rose bg-rose/15',
   },
   dating: {
     fragment:    'text-lilac',
-    unfold:      'text-lilac hover:text-lilac/80',
     placeholder: 'from-indigo/20 via-lilac/15 to-indigo/10',
+    btn:         'border-lilac/40 text-lilac hover:border-lilac hover:bg-lilac/10',
+    btnOpen:     'border-lilac text-lilac bg-lilac/15',
   },
   proposal: {
     fragment:    'text-gold',
-    unfold:      'text-gold hover:text-gold/80',
     placeholder: 'from-gold/15 via-blush/20 to-gold/10',
+    btn:         'border-gold/40 text-gold hover:border-gold hover:bg-gold/10',
+    btnOpen:     'border-gold text-gold bg-gold/15',
   },
 } as const
 
@@ -172,13 +175,23 @@ export function StoryMovement({ movement, index, verseText, verseRef }: StoryMov
         viewport={{ once: true, margin: '-40px' }}
         transition={{ duration: 0.5, delay: 0.45 }}
       >
-        <button
+        <motion.button
           onClick={() => setOpen(v => !v)}
           aria-expanded={open}
-          className={`inline-flex items-center gap-1.5 font-sans text-sm tracking-[0.18em] uppercase transition-colors duration-200 mb-3 ${palette.unfold}`}
+          whileHover={reduced ? {} : { scale: 1.04, y: -1 }}
+          whileTap={reduced  ? {} : { scale: 0.94 }}
+          transition={{ type: 'spring', stiffness: 500, damping: 25 }}
+          className={`inline-flex items-center gap-2.5 px-5 py-2 rounded-full border font-sans text-xs tracking-[0.14em] uppercase font-semibold transition-all duration-200 cursor-pointer select-none mb-3 ${open ? palette.btnOpen : palette.btn}`}
         >
-          {open ? 'Close ↑' : 'Unfold the memory ↓'}
-        </button>
+          <span>{open ? 'Close' : 'Unfold the memory'}</span>
+          <motion.span
+            animate={{ rotate: open ? 180 : 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="leading-none"
+          >
+            ↓
+          </motion.span>
+        </motion.button>
 
         <AnimatePresence initial={false}>
           {open && (
