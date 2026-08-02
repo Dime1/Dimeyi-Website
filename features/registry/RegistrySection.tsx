@@ -129,10 +129,9 @@ export function RegistrySection() {
 
             {account === 'ng' ? (
               <div className="w-full">
-                <DetailRow label="Account Name" value="Feyisogo & Dimeji" />
-                <DetailRow label="Bank"         value="[BANK_NAME]"       />
-                <DetailRow label="Account No."  value="[ACCOUNT_NUMBER]"  />
-                <DetailRow label="Sort Code"    value="[SORT_CODE]"       />
+                <DetailRow label="Account Name" value="Oladimeji Oguntola" />
+                <DetailRow label="Bank"         value="GT Bank"            />
+                <DetailRow label="Account No."  value="0217432969"         />
               </div>
             ) : (
               <div className="w-full" onClick={e => e.stopPropagation()}>
