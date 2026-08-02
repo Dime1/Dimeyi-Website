@@ -192,8 +192,7 @@ export function RegistrySection() {
               Amazon List
             </a>
             <a
-              href="#"
-              onClick={e => { e.preventDefault(); e.stopPropagation() }}
+              href="https://giftwhale.com/lists/A1In4C"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center w-full py-2 rounded-full text-ivory font-sans text-xs font-semibold tracking-widest uppercase hover:opacity-80 transition-opacity"
