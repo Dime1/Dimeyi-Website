@@ -7,16 +7,17 @@ timestamp of the pull, so the sheet becomes a running history log rather
 than being overwritten.
 
 Required environment variables (set as GitHub Actions secrets):
-  SUPABASE_URL                 - your Supabase project URL
-  SUPABASE_KEY                 - a Supabase API key (service_role or anon, depending on RLS)
-  GOOGLE_SERVICE_ACCOUNT_JSON  - the full JSON key of a Google service account, as a single-line string
-  GOOGLE_SHEET_ID              - the ID of the target Google Sheet (from its URL)
-  GOOGLE_SHEET_TAB             - (optional) worksheet/tab name, defaults to "rsvp"
+  SUPABASE_URL                    - your Supabase project URL
+  SUPABASE_KEY                    - a Supabase API key (service_role or anon, depending on RLS)
+  GOOGLE_SERVICE_ACCOUNT_JSON_B64 - base64-encoded contents of your Google service account JSON key
+  GOOGLE_SHEET_ID                 - the ID of the target Google Sheet (from its URL)
+  GOOGLE_SHEET_TAB                - (optional) worksheet/tab name, defaults to "rsvp"
 """
 
 import os
 import json
 import sys
+import base64
 from datetime import datetime, timezone
 
 from supabase import create_client
@@ -42,14 +43,9 @@ def get_supabase_rows():
 
 
 def get_worksheet():
-    creds_dict = json.loads(os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"])
-
-    # Common failure mode: pasting the JSON into a GitHub secret sometimes
-    # double-escapes or otherwise mangles the private_key's newlines, which
-    # breaks PEM parsing ("Unable to load PEM file... MalformedFraming").
-    # Normalizing here fixes it regardless of how the secret was pasted.
-    if "private_key" in creds_dict and isinstance(creds_dict["private_key"], str):
-        creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
+    encoded = os.environ["GOOGLE_SERVICE_ACCOUNT_JSON_B64"]
+    creds_json = base64.b64decode(encoded).decode("utf-8")
+    creds_dict = json.loads(creds_json)
 
     creds = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
     gc = gspread.authorize(creds)
