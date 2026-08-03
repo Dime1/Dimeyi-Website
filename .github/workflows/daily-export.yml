@@ -5,8 +5,14 @@ name: Daily RSVP export to Google Sheets
 
 on:
   schedule:
-    - cron: "0 6 * * *"   # 6:00 AM UTC daily — adjust to your preferred time
-  workflow_dispatch: {}    # lets you trigger it manually from the Actions tab too
+    # 6:00 PM Berlin time, year-round. GitHub Actions cron runs on UTC only
+    # and has no concept of daylight saving, so the month field is used to
+    # pick the right UTC offset per season (approximate: actual EU DST
+    # changeover is the last Sunday of March / October, so there's up to a
+    # ~1-week drift right at the boundary each way).
+    - cron: "0 16 * 4-10 *"      # Apr–Oct: 16:00 UTC = 18:00 CEST (summer, UTC+2)
+    - cron: "0 17 * 1-3,11-12 *" # Nov–Mar: 17:00 UTC = 18:00 CET  (winter, UTC+1)
+  workflow_dispatch: {}          # lets you trigger it manually from the Actions tab too
 
 jobs:
   export:
