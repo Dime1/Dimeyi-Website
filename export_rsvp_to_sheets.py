@@ -43,6 +43,14 @@ def get_supabase_rows():
 
 def get_worksheet():
     creds_dict = json.loads(os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"])
+
+    # Common failure mode: pasting the JSON into a GitHub secret sometimes
+    # double-escapes or otherwise mangles the private_key's newlines, which
+    # breaks PEM parsing ("Unable to load PEM file... MalformedFraming").
+    # Normalizing here fixes it regardless of how the secret was pasted.
+    if "private_key" in creds_dict and isinstance(creds_dict["private_key"], str):
+        creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
+
     creds = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
     gc = gspread.authorize(creds)
 
