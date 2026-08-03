@@ -26,12 +26,18 @@ from google.oauth2.service_account import Credentials
 TABLE_NAME = "rsvp"
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
+# Only these columns are pulled from the table and written to the sheet.
+# NOTE: "guest_count" is assumed — Postgres column names can't contain
+# spaces, so if your actual column is named differently (e.g. "guests"),
+# update it here.
+SELECT_COLUMNS = ["name", "email", "attending", "guest_count", "phone", "plus_one_name"]
+
 
 def get_supabase_rows():
     url = os.environ["SUPABASE_URL"]
     key = os.environ["SUPABASE_KEY"]
     client = create_client(url, key)
-    response = client.table(TABLE_NAME).select("*").execute()
+    response = client.table(TABLE_NAME).select(",".join(SELECT_COLUMNS)).execute()
     return response.data or []
 
 
@@ -57,13 +63,7 @@ def main():
         print("No rows returned from Supabase 'rsvp' table. Nothing to append.")
         return
 
-    # Collect the full set of column names across all rows (handles
-    # nullable/missing fields without needing the schema hardcoded).
-    columns = []
-    for row in rows:
-        for key in row.keys():
-            if key not in columns:
-                columns.append(key)
+    columns = SELECT_COLUMNS
 
     worksheet = get_worksheet()
     existing_header = worksheet.row_values(1)
